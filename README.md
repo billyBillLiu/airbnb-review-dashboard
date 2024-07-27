@@ -30,4 +30,4 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > - 🚧 Allow user to log out
 > - 🚧 Allow the user to split their reviews by listing
 
-
+Sole Developer: Bill Liu
