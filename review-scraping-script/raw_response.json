@@ -1,0 +1,408 @@
+{
+  "data": {
+    "presentation": {
+      "__typename": "RootPresentationContainer",
+      "userProfileContainer": {
+        "__typename": "UserProfilePresentationContainer",
+        "userProfileReviews": {
+          "__typename": "UserProfileReviews",
+          "count": 10,
+          "isAutoTranslationEnabled": true,
+          "reviews": [
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-07-02T20:24:23.182Z",
+              "comments": "Stayed here a few times it was so convenient to my job & theres lots of food options around & shopping  \nPretty clean & private.j would recommend I have no complaints",
+              "entityId": "52474781",
+              "entityType": "HOME",
+              "id": "1192147555934341677",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52474781",
+                "localizedName": null,
+                "name": "PHL. 5 min to Stadium. Supermarket and restaurants",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-52474781/original/fa963a6d-e510-4fc0-9495-a4638f7545b9.jpeg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "546716525",
+                "createdAt": "2023-11-16T02:22:54.679Z",
+                "isSuperhost": false,
+                "location": "Huntington Beach, CA",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-546716525/original/702bc5bf-55e6-4b4e-9a4a-b079f41971b1.jpeg?aki_policy=profile_x_medium",
+                "smartName": "Shelby"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-07-02T17:23:05.340Z",
+              "comments": "ð¯ðºð¸ð¥ð",
+              "entityId": "52533742",
+              "entityType": "HOME",
+              "id": "1192056305977841327",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52533742",
+                "localizedName": null,
+                "name": "PHL. 5 min to Sports Complex. Walkable supermarket",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/2aebdd3a-6071-492f-8e2e-5748571d8ef4.jpg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "586351278",
+                "createdAt": "2024-06-29T00:50:48.977Z",
+                "isSuperhost": false,
+                "location": "Philadelphia, PA",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-586351278/original/d28b37a6-828f-4ab7-b1fe-0bf80522f763.jpeg?aki_policy=profile_x_medium",
+                "smartName": "Sherry"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-30T18:21:07.469Z",
+              "comments": "Great Stay as always ð",
+              "entityId": "52475064",
+              "entityType": "HOME",
+              "id": "1190635964732384209",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52475064",
+                "localizedName": null,
+                "name": "5 min to Lincoln FnFd. PHL. Walkable shopping area",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-52474781/original/4f2c3f60-a135-49b5-942b-91bad378d8c1.jpeg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "573952311",
+                "createdAt": "2024-04-24T05:02:39.797Z",
+                "isSuperhost": false,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/ebc209af-e872-4ba9-bbe3-5a80085da344.jpg?aki_policy=profile_x_medium",
+                "smartName": "Jessica"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-29T17:56:13.626Z",
+              "comments": "Place is ideal for a short stay (which was our trip) due to the confined space. Small room but had its own bathroom attached which was appreciated. I found that the toilet wasnât cleaned properly so I did that for our safety and peace of mind. I really liked the water pressure and diff features in shower faucet and the mini fridge in room came in handy to store my dogâs food. The house is quiet and the area seems to be the same way. Parking isnât always readily available outside of the home so expect to drive around a little to catch a spot if youâre not lucky.",
+              "entityId": "52533742",
+              "entityType": "HOME",
+              "id": "1189898657743190568",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52533742",
+                "localizedName": null,
+                "name": "PHL. 5 min to Sports Complex. Walkable supermarket",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/2aebdd3a-6071-492f-8e2e-5748571d8ef4.jpg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 4,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "84064809",
+                "createdAt": "2016-07-16T13:21:36.000Z",
+                "isSuperhost": true,
+                "location": "East Hartford, CT",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-84064809/original/6908fd82-175e-45e4-80f7-3aa23afb0b39.jpeg?aki_policy=profile_x_medium",
+                "smartName": "Mariah"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-28T18:19:33.187Z",
+              "comments": "Stay here every time I come into town ..very clean & easy to check in \nalso very close to a lot of things highly recommended",
+              "entityId": "52475064",
+              "entityType": "HOME",
+              "id": "1189185622378667135",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52475064",
+                "localizedName": null,
+                "name": "5 min to Lincoln FnFd. PHL. Walkable shopping area",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-52474781/original/4f2c3f60-a135-49b5-942b-91bad378d8c1.jpeg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "546716525",
+                "createdAt": "2023-11-16T02:22:54.679Z",
+                "isSuperhost": false,
+                "location": "Huntington Beach, CA",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-546716525/original/702bc5bf-55e6-4b4e-9a4a-b079f41971b1.jpeg?aki_policy=profile_x_medium",
+                "smartName": "Shelby"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-28T17:26:12.023Z",
+              "comments": "Only issue I has was when we arrived we were given the key code for someone elseâs room that was already in there, took about 10 minutes or so for them to get me the correct information but overall it was a decent space for two days and for the price, I will say the only thing is the kitchen was sorta of messy like the trash can was pretty full.",
+              "entityId": "52474781",
+              "entityType": "HOME",
+              "id": "1189158769065599217",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52474781",
+                "localizedName": null,
+                "name": "PHL. 5 min to Stadium. Supermarket and restaurants",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-52474781/original/fa963a6d-e510-4fc0-9495-a4638f7545b9.jpeg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 4,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "218153523",
+                "createdAt": "2018-10-01T02:50:41.000Z",
+                "isSuperhost": false,
+                "location": "Williamsport, PA",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/477795ac-78ff-4b1c-b2ca-d26f824761f5.jpg?aki_policy=profile_x_medium",
+                "smartName": "Simone"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-23T17:46:35.434Z",
+              "comments": "great stay! convenient location, clean space, tidy and cozy.",
+              "entityId": "52475064",
+              "entityType": "HOME",
+              "id": "1185545153122452466",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52475064",
+                "localizedName": null,
+                "name": "5 min to Lincoln FnFd. PHL. Walkable shopping area",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-52474781/original/4f2c3f60-a135-49b5-942b-91bad378d8c1.jpeg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "95003450",
+                "createdAt": "2016-09-13T20:02:15.000Z",
+                "isSuperhost": false,
+                "location": "New Jersey, United States",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/39db434b-a233-43a1-b70a-ff54e86bc3e2.jpg?aki_policy=profile_x_medium",
+                "smartName": "Marios"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-16T20:46:00.852Z",
+              "comments": "Responsive & easy to get into \nVery clean & convenient",
+              "entityId": "52474781",
+              "entityType": "HOME",
+              "id": "1180562029879562544",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52474781",
+                "localizedName": null,
+                "name": "PHL. 5 min to Stadium. Supermarket and restaurants",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-52474781/original/fa963a6d-e510-4fc0-9495-a4638f7545b9.jpeg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "546716525",
+                "createdAt": "2023-11-16T02:22:54.679Z",
+                "isSuperhost": false,
+                "location": "Huntington Beach, CA",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-546716525/original/702bc5bf-55e6-4b4e-9a4a-b079f41971b1.jpeg?aki_policy=profile_x_medium",
+                "smartName": "Shelby"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-16T19:28:34.311Z",
+              "comments": "everything was good",
+              "entityId": "52533742",
+              "entityType": "HOME",
+              "id": "1180523051865072724",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52533742",
+                "localizedName": null,
+                "name": "PHL. 5 min to Sports Complex. Walkable supermarket",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/2aebdd3a-6071-492f-8e2e-5748571d8ef4.jpg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "149481555",
+                "createdAt": "2017-09-07T02:26:50.000Z",
+                "isSuperhost": false,
+                "location": "Baltimore, MD",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/3be16faa-013e-4fae-a17d-0cee3521e036.jpg?aki_policy=profile_x_medium",
+                "smartName": "Shayan"
+              },
+              "translation": null
+            },
+            {
+              "__typename": "UserProfilePageReview",
+              "createdAt": "2024-06-16T19:26:19.275Z",
+              "comments": "Great Stay ð",
+              "entityId": "52475064",
+              "entityType": "HOME",
+              "id": "1180521919100350659",
+              "isHostHighlight": false,
+              "listing": {
+                "__typename": "UserProfileReviewListing",
+                "id": "52475064",
+                "localizedName": null,
+                "name": "5 min to Lincoln FnFd. PHL. Walkable shopping area",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-52474781/original/4f2c3f60-a135-49b5-942b-91bad378d8c1.jpeg?aki_policy=small"
+              },
+              "photos": [],
+              "rating": 5,
+              "response": null,
+              "respondedAt": null,
+              "reviewee": {
+                "__typename": "UserProfileReviewUser",
+                "id": "424216652",
+                "createdAt": "2021-09-23T02:20:23.000Z",
+                "isSuperhost": true,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/1ba25335-a28f-45e4-b48d-c950e45eec6e.jpg?aki_policy=profile_x_medium",
+                "smartName": "Bill"
+              },
+              "reviewer": {
+                "__typename": "UserProfileReviewUser",
+                "id": "573952311",
+                "createdAt": "2024-04-24T05:02:39.797Z",
+                "isSuperhost": false,
+                "location": null,
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/ebc209af-e872-4ba9-bbe3-5a80085da344.jpg?aki_policy=profile_x_medium",
+                "smartName": "Jessica"
+              },
+              "translation": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  "extensions": { "traceId": "-G0Kj1pbZYh6e-SUtr_6dw==" }
+}
