@@ -20,14 +20,14 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 - ❌: _Failed To Complete_ (Pushed to next day)
 
 >
-> #### 7/27/24
+> ### 7/27/24
 > - 🚧 ???
 > - 🚧 ???
 > - 🚧 ???
-
-#### 7/26/24
-- ✅ Create Git Repo
-- 🚧 Allow user to log out
-- 🚧 Allow the user to split their reviews by listing
+>
+> ### 7/26/24
+> - ✅ Create Git Repo
+> - 🚧 Allow user to log out
+> - 🚧 Allow the user to split their reviews by listing
 
 
