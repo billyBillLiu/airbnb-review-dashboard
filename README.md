@@ -17,7 +17,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 ### Legend
 - ✅: _Completed_
 - 🚧: _In Progress_
-- ❌: _Failed To Complete_ (Pushed to next day)
+- ❌: _Delayed_
 
 >
 > ### 7/27/24
