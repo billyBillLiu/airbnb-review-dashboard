@@ -14,7 +14,7 @@ Created to easily collect and store and view Airbnb reviews in a personal databa
 
 ## Calendar
 
-##### Legend
+### Legend
 - ✅: Completed
 - 🚧: In Progress
 - ❌: Unable To Complete (Pushed to next day)
