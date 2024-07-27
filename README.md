@@ -12,3 +12,9 @@ Created to easily collect and store and view Airbnb reviews in a personal databa
 - **Database**: Local MySQL database
 - **Command to Run**: `python manage.py runserver`
 
+## Calendar
+
+####7/26/24
+- **Create Git Repo**
+- **Allow user to log out**
+- **Allow the user to split their reviews by listing**
