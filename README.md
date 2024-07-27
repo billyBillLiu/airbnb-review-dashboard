@@ -4,7 +4,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 ## Project Setup
 
 ### Frontend
-- **Framework**: React
+- **Framework**: React.js (Vite)
 - **Command to Run**: `npm run dev`
 
 ### Backend
