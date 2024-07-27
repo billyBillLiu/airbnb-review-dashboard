@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  background-color: #353535; /* Same as your container's background color */
+}
+
+.container {
+  padding: 30px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 90vh; /* Full viewport height */
+  background-color: #353535;
+}
+
+.reviews-section {
+  flex: 1; /* Takes up available space */
+  overflow-y: auto; /* Adds vertical scroll if content overflows */
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* Adjust minmax value for larger squares */
+  gap: 20px; /* Space between grid items */
+  background-color: #3e3e3e; /* Dark brownish gray background for reviews section */
+}
+
+.upload-section {
+  color: #fff;
+  background-color: #353535;
+}
