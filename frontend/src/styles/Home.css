@@ -1,15 +1,29 @@
+html,
 body {
   margin: 0;
-  background-color: #353535; /* Same as your container's background color */
+  padding: 0;
+  height: 100%; /* Ensure that the html and body elements take full height */
 }
 
 .container {
-  padding: 30px;
-  color: #fff;
   display: flex;
   flex-direction: column;
-  height: 90vh; /* Full viewport height */
+  padding: 30px;
+  color: #fff;
+  height: 100vh; /* Full viewport height */
   background-color: #353535;
+  box-sizing: border-box; /* Include padding and border in height calculation */
+}
+.header-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.header-section button {
+  height: 30px;
 }
 
 .reviews-section {
@@ -25,7 +39,7 @@ body {
   background-color: #3e3e3e; /* Dark brownish gray background for reviews section */
 }
 
-.upload-section {
+.footer-section {
   color: #fff;
   background-color: #353535;
 }

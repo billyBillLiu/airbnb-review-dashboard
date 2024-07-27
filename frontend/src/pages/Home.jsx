@@ -58,13 +58,16 @@ function Home() {
 
   return (
     <div className="container">
-      <h1>Reviews:</h1>
+      <div className="header-section">
+        <h1>Reviews:</h1>
+        <button onClick={handleUpload}>Log Out</button>
+      </div>
       <div className="reviews-section">
         {reviews.map((review) => (
           <Note review={review} onDelete={deleteReviews} key={review.id} />
         ))}
       </div>
-      <div className="upload-section">
+      <div className="footer-section">
         <h2>Upload .Har File</h2>
         <input type="file" accept=".har" onChange={handleFileChange} />
         <button onClick={handleUpload}>Upload</button>

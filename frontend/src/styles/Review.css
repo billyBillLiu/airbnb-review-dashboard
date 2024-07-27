@@ -12,16 +12,27 @@
 }
 
 .review-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: #fff; /* White text for better contrast */
   font-size: 1.2rem; /* Larger font size */
   font-weight: bold;
-  margin-bottom: 10px;
+}
+
+.review-title p {
+  margin: 0;
+}
+
+.review-listing {
+  color: #aaa; /* Lighter gray for date */
+  font-size: 0.9rem; /* Slightly smaller font size */
+  margin: 0;
 }
 
 .review-content {
   color: #ccc; /* Lighter gray text for comments */
   font-size: 1rem; /* Larger font size */
-  margin-bottom: 10px;
   flex-grow: 1; /* Allows the comment to take up remaining space */
   overflow: auto; /* Adds scroll within the content area if needed */
 }
@@ -29,20 +40,18 @@
 .review-date {
   color: #aaa; /* Lighter gray for date */
   font-size: 0.9rem; /* Slightly smaller font size */
-  margin-bottom: 10px;
 }
 
 .delete-button {
-  background-color: #ff5733; /* Hot red color */
+  background-color: #ff0000; /* Hot red color */
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 5px;
+  padding: 12px 12px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  align-self: flex-end; /* Aligns the button to the bottom right */
+  margin: 5, 0;
 }
 
 .delete-button:hover {
-  background-color: #c70039; /* Darker hot red for hover effect */
+  background-color: #a70000; /* Darker hot red for hover effect */
 }
