@@ -1,5 +1,5 @@
 # Airbnb Host Reviews Dashboard
-Created to easily collect and store and view Airbnb reviews in a personal database for use with AI applications.
+Created to easily collect, store, and view Airbnb reviews in a personal database for applications of ML/AI.
 
 ## Project Setup
 
