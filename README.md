@@ -15,9 +15,9 @@ Created to easily collect and store and view Airbnb reviews in a personal databa
 ## Calendar
 
 ### Legend
-- ✅: Completed
-- 🚧: In Progress
-- ❌: Unable To Complete (Pushed to next day)
+- ✅: _Completed_
+- 🚧: _In Progress_
+- ❌: _Failed To Complete_ (Pushed to next day)
 
 #### 7/26/24
 - ✅ Create Git Repo
