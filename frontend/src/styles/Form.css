@@ -35,3 +35,9 @@
 .form-button:hover {
   background-color: #0056b3;
 }
+
+.toggle-form {
+  margin: 0;
+  color: #61aeff;
+  cursor: pointer;
+}

@@ -11,7 +11,9 @@ function Form({ route, method }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const name = method === "login" ? "Login" : "Register";
+  const isLogin = method === "login" ? true : false;
+  const name = isLogin ? "Login" : "Register";
+  const nameSecondary = isLogin ? "register" : "login";
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -31,6 +33,10 @@ function Form({ route, method }) {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleToggleForm = () => {
+    navigate(`/${nameSecondary}`);
   };
 
   return (
@@ -54,6 +60,9 @@ function Form({ route, method }) {
       <button className="form-button" type="submit">
         {name}
       </button>
+      <p className="toggle-form" onClick={handleToggleForm}>
+        Click here to {nameSecondary}
+      </p>
     </form>
   );
 }

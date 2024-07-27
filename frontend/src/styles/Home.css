@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%; /* Ensure that the html and body elements take full height */
+  background-color: #353535;
 }
 
 .container {
@@ -19,7 +20,6 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
 }
 
 .header-section button {
@@ -41,5 +41,4 @@ body {
 
 .footer-section {
   color: #fff;
-  background-color: #353535;
 }
