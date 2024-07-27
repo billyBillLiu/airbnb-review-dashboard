@@ -1,3 +1,5 @@
+# Airbnb Host Reviews Dashboard
+Created to easily collect and store and view Airbnb reviews in a personal database.
 
 ## Project Setup
 
