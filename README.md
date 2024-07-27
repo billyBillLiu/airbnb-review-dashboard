@@ -15,6 +15,6 @@ Created to easily collect and store and view Airbnb reviews in a personal databa
 ## Calendar
 
 #### 7/26/24
-- ✅ **Create Git Repo**:
-- 🚧 **Allow user to log out**: 
-- 🚧 **Allow the user to split their reviews by listing**
+- ✅ Create Git Repo
+- 🚧 Allow user to log out
+- 🚧 Allow the user to split their reviews by listing
