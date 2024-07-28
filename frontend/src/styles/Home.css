@@ -15,6 +15,7 @@ body {
   background-color: #353535;
   box-sizing: border-box; /* Include padding and border in height calculation */
 }
+
 .header-section {
   display: flex;
   flex-direction: row;
@@ -22,8 +23,13 @@ body {
   justify-content: space-between;
 }
 
-.header-section button {
-  height: 30px;
+.header-section div {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-section select {
+  margin: 10px;
 }
 
 .reviews-section {
@@ -40,5 +46,13 @@ body {
 }
 
 .footer-section {
+  display: flex;
+  flex-direction: row;
   color: #fff;
+  justify-content: space-between;
+}
+
+.footer-section button {
+  height: 30px;
+  align-self: flex-end;
 }
