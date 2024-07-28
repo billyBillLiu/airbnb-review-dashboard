@@ -25,8 +25,7 @@ class ProcessHarFile(APIView):
 
         filtered_entries = []
         entries = har_parser.har_data['entries']
-        for i in range(0, len(entries), 2):
-            entry = entries[i]
+        for entry in entries:
             if 'https://www.airbnb.com/api/v3/GetUserProfileReviews' in entry['request']['url']:
                 filtered_entries.append(entry['response']['content']['text'])
 
@@ -53,8 +52,13 @@ class ProcessHarFile(APIView):
                 rating = review['rating']
                 comment = review['comments']
                 reviewer = review['reviewer']['smartName']
-                listing_id = review['listing']['id']
-                listing_name = review['listing']['name']
+                listing = review['listing']
+                if listing != None:
+                    listing_id = listing['id']
+                    listing_name = listing['name']
+                else:
+                    listing_id = None
+                    listing_name = None
                 date = parse_datetime(review['createdAt'])
                 extracted_review_data.append({
                     'review_id': review_id,
@@ -70,14 +74,19 @@ class ProcessHarFile(APIView):
         currentUser = request.user
         for review_data in extracted_review_data:
 
-            # Gets existing listing or creates a new one if it exists
-            listing_id = review_data['listing_id']
-            listing_name = review_data['listing_name']
-            listing, _ = Listing.objects.get_or_create(
-                listing_id=listing_id,
-                user = currentUser,
-                defaults={'name': listing_name}
-            )
+            # Some Airbnb reviews do not have a listing attached to it
+            if review_data['listing_id'] == None:
+                listing = None 
+            else:
+                # Gets existing listing or creates a new one if it exists
+                listing_id = review_data['listing_id']
+                listing_name = review_data['listing_name']
+                listing, _ = Listing.objects.get_or_create(
+                    listing_id=listing_id,
+                    user = currentUser,
+                    defaults={'name': listing_name}
+                )
+                
 
             Review.objects.update_or_create(
                 review_id=review_data['review_id'],

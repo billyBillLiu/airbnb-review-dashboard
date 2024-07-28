@@ -20,7 +20,9 @@ function Review({ review, onDelete }) {
         <p>{review.rating}&#11088;</p>
       </div>
 
-      <p className="review-listing">{review.listing.name}</p>
+      <p className="review-listing">
+        {review.listing ? review.listing.name : "NO LISTING DETECTED"}
+      </p>
       <p className="review-content">{review.comment}</p>
       <p className="review-date">{formattedDate}</p>
       <button className="delete-button" onClick={() => onDelete(review.id)}>

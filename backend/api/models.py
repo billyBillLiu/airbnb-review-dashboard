@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Listing(models.Model):
     listing_id = models.CharField(max_length=100)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=51)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
 
     def __str__(self):

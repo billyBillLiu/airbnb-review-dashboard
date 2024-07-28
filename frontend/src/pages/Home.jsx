@@ -19,7 +19,7 @@ function Home() {
       .then((res) => res.data)
       .then((data) => {
         setReviews(data);
-        // console.log(data);
+        console.log(data);
       })
       .catch((err) => alert(`Error While Getting Reviews: \n${err}`));
   };
@@ -65,7 +65,7 @@ function Home() {
   return (
     <div className="container">
       <div className="header-section">
-        <h1>Reviews:</h1>
+        <h1>{reviews.length} Reviews Displayed:</h1>
         <button onClick={handleLogout}>Log Out</button>
       </div>
       <div className="reviews-section">
