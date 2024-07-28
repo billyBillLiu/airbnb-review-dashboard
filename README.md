@@ -37,7 +37,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > ### 7/27/24
 >
 > - ✅ Update backend modelling to have a listing object for each user's reviews
-> - 🚧 Allow user to sort by date and star rating
+> - ✅ Allow user to sort by date and star rating
 > - ✅ Add an indicator showing the number of reviews being displayed
 >
 > ### 7/26/24
