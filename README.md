@@ -25,7 +25,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > ### 7/29/24
 >
 > - 🚧 Allow user to split their reviews by listing
-> - 🚧 ???
+> - 🚧 Update backend to include listing picture in Listing object
 > - 🚧 ???
 >
 > ### 7/28/24
