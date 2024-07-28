@@ -21,7 +21,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 
 - ✅: _Completed_
 - 🚧: _In Progress_
-- ❌: _Cencelled_
+- ❌: _Cancelled_
 
 > ### 7/29/24
 >
