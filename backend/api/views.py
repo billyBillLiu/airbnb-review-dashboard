@@ -67,7 +67,7 @@ class ProcessHarFile(APIView):
                 })
 
         # Save extracted data to database
-        user = request.user
+        currentUser = request.user
         for review_data in extracted_review_data:
 
             # Gets existing listing or creates a new one if it exists
@@ -75,14 +75,13 @@ class ProcessHarFile(APIView):
             listing_name = review_data['listing_name']
             listing, _ = Listing.objects.get_or_create(
                 listing_id=listing_id,
-                owner = user,
-                defaults={'name': listing_name,
-                          }
+                user = currentUser,
+                defaults={'name': listing_name}
             )
 
             Review.objects.update_or_create(
-                id=review_data['review_id'],
-                reviewee=user,
+                review_id=review_data['review_id'],
+                user=currentUser,
                 defaults={
                     'rating': review_data['rating'],
                     'comment': review_data['comment'],
@@ -99,12 +98,12 @@ class ReviewListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        return Review.objects.filter(reviewee=user)
+        currentUser = self.request.user
+        return Review.objects.filter(user=currentUser)
     
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(reviewee=self.request.user)
+            serializer.save(user=self.request.user)
         else:
             print(serializer.errors)
 
@@ -113,8 +112,8 @@ class ReviewDelete(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        return Review.objects.filter(reviewee=user)
+        currentUser = self.request.user
+        return Review.objects.filter(user=currentUser)
 
 
 class CreateUserView(generics.CreateAPIView):

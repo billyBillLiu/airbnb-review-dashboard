@@ -2,8 +2,6 @@ import React from "react";
 import "../styles/Review.css";
 
 function Review({ review, onDelete }) {
-  console.log("Review object:", review);
-
   // Formatting Datetime Object into String
   const date = new Date(review.date);
   const options = {

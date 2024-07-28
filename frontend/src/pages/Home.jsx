@@ -19,14 +19,14 @@ function Home() {
       .then((res) => res.data)
       .then((data) => {
         setReviews(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => alert(`Error While Getting Reviews: \n${err}`));
   };
 
   const deleteReviews = (id) => {
     api
-      .delete(`/api/reviews/delete/${id}`)
+      .delete(`/api/reviews/delete/${id}/`)
       .then((res) => {
         if (res.status === 204) alert("Review Deleted");
         else alert("Failed to delete review");
