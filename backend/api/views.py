@@ -3,11 +3,10 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from .serializers import UserSerializer, ReviewSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import Review
+from .models import Review,  Listing
 
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from .models import Review
 import json
 from haralyzer import HarParser
 import base64
@@ -45,6 +44,7 @@ class ProcessHarFile(APIView):
                 json_data = json.loads(entry)
             decoded_json.append(json_data)
 
+        # Extract data from json
         extracted_review_data = []
         for key in decoded_json:
             reviews = key['data']['presentation']['userProfileContainer']['userProfileReviews']['reviews']
@@ -54,28 +54,41 @@ class ProcessHarFile(APIView):
                 comment = review['comments']
                 reviewer = review['reviewer']['smartName']
                 listing_id = review['listing']['id']
-                date = parse_datetime(review['createdAt'])  # Convert to datetime object
+                listing_name = review['listing']['name']
+                date = parse_datetime(review['createdAt'])
                 extracted_review_data.append({
                     'review_id': review_id,
                     'rating': rating,
                     'comment': comment,
                     'reviewer': reviewer,
                     'listing_id': listing_id,
+                    'listing_name': listing_name,
                     'date': date
                 })
 
-        # Save to database
+        # Save extracted data to database
         user = request.user
         for review_data in extracted_review_data:
+
+            # Gets existing listing or creates a new one if it exists
+            listing_id = review_data['listing_id']
+            listing_name = review_data['listing_name']
+            listing, _ = Listing.objects.get_or_create(
+                listing_id=listing_id,
+                owner = user,
+                defaults={'name': listing_name,
+                          }
+            )
+
             Review.objects.update_or_create(
                 id=review_data['review_id'],
+                reviewee=user,
                 defaults={
                     'rating': review_data['rating'],
                     'comment': review_data['comment'],
                     'reviewer': review_data['reviewer'],
-                    'listing_id': review_data['listing_id'],
+                    'listing': listing,
                     'date': review_data['date'],
-                    'reviewee': user
                 }
             )
         return JsonResponse({'count': len(extracted_review_data)})

@@ -2,6 +2,8 @@ import React from "react";
 import "../styles/Review.css";
 
 function Review({ review, onDelete }) {
+  console.log("Review object:", review);
+
   // Formatting Datetime Object into String
   const date = new Date(review.date);
   const options = {
@@ -20,7 +22,7 @@ function Review({ review, onDelete }) {
         <p>{review.rating}&#11088;</p>
       </div>
 
-      <p className="review-listing">Listing: {review.listing_id}</p>
+      <p className="review-listing">{review.listing.name}</p>
       <p className="review-content">{review.comment}</p>
       <p className="review-date">{formattedDate}</p>
       <button className="delete-button" onClick={() => onDelete(review.id)}>
