@@ -23,16 +23,22 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 - 🚧: _In Progress_
 - ❌: _Delayed_
 
+> ### 7/29/24
+>
+> - 🚧 ???
+> - 🚧 ???
+> - 🚧 ???
+>
 > ### 7/28/24
 >
+> - 🚧 Update backend to delete listing objects when all related reviews are deleted
+> - 🚧 Allow user to rename each listing
 > - 🚧 Allow user to split their reviews by listing
-> - 🚧 ???
-> - 🚧 ???
 >
 > ### 7/27/24
 >
-> - 🚧 Allow user to name each listing
 > - 🚧 Allow user to sort by date and star rating and see number of listings
+> - ✅ Update backend modelling to have a listing object for each user's
 > - 🚧 Update the backend modelling to store the reviewee's Airbnb id and name
 >
 > ### 7/26/24
