@@ -53,6 +53,16 @@ function Home() {
       .catch((err) => alert(`Error While Deleting Review: \n${err}`));
   };
 
+  const deleteAllReviews = () => {
+    api
+      .delete("/api/reviews/delete-all/")
+      .then((res) => {
+        if (res.status !== 204) alert("Failed to delete all reviews");
+        getReviews();
+      })
+      .catch((err) => alert(`Error While Deleting All Reviews:\n${err}`));
+  };
+
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
@@ -106,7 +116,10 @@ function Home() {
           <input type="file" accept=".har" onChange={handleFileChange} />
           <button onClick={handleUpload}>Upload</button>
         </div>
-        <button onClick={handleLogout}>Log Out</button>
+        <div>
+          <button onClick={deleteAllReviews}>Delete All Reviews</button>
+          <button onClick={handleLogout}>Log Out</button>
+        </div>
       </div>
     </div>
   );

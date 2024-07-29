@@ -1,18 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.utils.dateparse import parse_datetime
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from .serializers import UserSerializer, ReviewSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Review,  Listing
-
-from django.http import JsonResponse
-from rest_framework.views import APIView
 import json
 from haralyzer import HarParser
 import base64
 import re
-from django.utils.dateparse import parse_datetime
-from django.views.decorators.csrf import csrf_exempt
+
 
 
 class ProcessHarFile(APIView):
@@ -71,7 +72,7 @@ class ProcessHarFile(APIView):
                 })
 
         # Save extracted data to database
-        currentUser = request.user
+        current_user = request.user
         for review_data in extracted_review_data:
 
             # Some Airbnb reviews do not have a listing attached to it
@@ -83,14 +84,14 @@ class ProcessHarFile(APIView):
                 listing_name = review_data['listing_name']
                 listing, _ = Listing.objects.get_or_create(
                     listing_id=listing_id,
-                    user = currentUser,
+                    user = current_user,
                     defaults={'name': listing_name}
                 )
                 
 
             Review.objects.update_or_create(
                 review_id=review_data['review_id'],
-                user=currentUser,
+                user=current_user,
                 defaults={
                     'rating': review_data['rating'],
                     'comment': review_data['comment'],
@@ -107,8 +108,8 @@ class ReviewListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        currentUser = self.request.user
-        return Review.objects.filter(user=currentUser)
+        current_user = self.request.user
+        return Review.objects.filter(user=current_user)
     
     def perform_create(self, serializer):
         if serializer.is_valid():
@@ -121,8 +122,20 @@ class ReviewDelete(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        currentUser = self.request.user
-        return Review.objects.filter(user=currentUser)
+        current_user = self.request.user
+        return Review.objects.filter(user=current_user)
+    
+class DeleteAllReviews(generics.GenericAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, _):
+        current_user=self.request.user
+        all_reviews = Review.objects.filter(user=current_user)
+        review_count = all_reviews.count()
+        all_reviews.delete()
+        return Response({'message': f'{review_count} reviews deleted.'}, status=status.HTTP_204_NO_CONTENT)
+
 
 
 class CreateUserView(generics.CreateAPIView):

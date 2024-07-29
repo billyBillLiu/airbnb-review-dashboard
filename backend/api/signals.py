@@ -4,6 +4,9 @@ from .models import Review, Listing
 
 @receiver(post_delete, sender=Review)
 def delete_listing_if_no_reviews(sender, instance, **kwargs):
-    listing = instance.listing
+    try:
+        listing = instance.listing
+    except:
+        return
     if listing and not Review.objects.filter(listing=listing).exists():
         listing.delete()
