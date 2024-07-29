@@ -30,7 +30,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### 7/28/24
 >
-> - 🚧 Update backend to delete listing objects when all related reviews are deleted
+> - ✅ Update backend to delete listing objects when all related reviews are deleted
 > - 🚧 Allow user to rename each listing
 > - 🚧 Allow user to select/delete all reviews
 >
