@@ -47,8 +47,7 @@ function Home() {
     api
       .delete(`/api/reviews/delete/${id}/`)
       .then((res) => {
-        if (res.status === 204) alert("Review Deleted");
-        else alert("Failed to delete review");
+        if (res.status !== 204) alert("Failed to delete review");
         getReviews();
       })
       .catch((err) => alert(`Error While Deleting Review: \n${err}`));
@@ -68,8 +67,7 @@ function Home() {
     api
       .post("/api/reviews/process-har-file/", formData)
       .then((res) => {
-        if (res.status === 200) alert("Reviews Processed");
-        else alert("Failed to Process File");
+        if (res.status !== 200) alert("Failed to Process File");
         getReviews();
       })
       .catch((err) => alert(`Error While Processing File: \n${err}`));
