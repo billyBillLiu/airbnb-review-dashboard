@@ -116,7 +116,7 @@ function Home() {
           <input type="file" accept=".har" onChange={handleFileChange} />
           <button onClick={handleUpload}>Upload</button>
         </div>
-        <div>
+        <div className="footer-buttons">
           <button onClick={deleteAllReviews}>Delete All Reviews</button>
           <button onClick={handleLogout}>Log Out</button>
         </div>

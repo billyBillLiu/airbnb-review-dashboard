@@ -52,7 +52,8 @@ body {
   justify-content: space-between;
 }
 
-.footer-section button {
+.footer-buttons button {
   height: 30px;
-  align-self: flex-end;
+  margin-left: 10px;
+  margin-top: 10px;
 }
