@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 
 function Home() {
-  const [reviews, setReviews] = useState([]);
   const [file, setFile] = useState(null);
-  const [sortCriteria, setSortCriteria] = useState("newest");
+  const [allReviews, setAllReviews] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
+  const [groupedReviews, setGroupedReviews] = useState({});
+  const [sortCriteria, setSortCriteria] = useState("newest");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +17,22 @@ function Home() {
   }, []);
 
   useEffect(() => {
+    setSortedReviews(sortReviews(allReviews));
+    setGroupedReviews(groupReviews(sortedReviews));
+  }, [allReviews, sortCriteria]);
+
+  const getReviews = () => {
+    api
+      .get("/api/reviews/")
+      .then((res) => res.data)
+      .then((data) => {
+        setAllReviews(data);
+        console.log(data);
+      })
+      .catch((err) => alert(`Error While Getting Reviews: \n${err}`));
+  };
+
+  const sortReviews = (reviews) => {
     let sorted = [];
     if (sortCriteria === "newest") {
       sorted = [...reviews].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -29,18 +46,22 @@ function Home() {
     if (sortCriteria === "lowest") {
       sorted = [...reviews].sort((a, b) => a.rating - b.rating);
     }
-    setSortedReviews(sorted);
-  }, [reviews, sortCriteria]);
+    return sorted;
+  };
 
-  const getReviews = () => {
-    api
-      .get("/api/reviews/")
-      .then((res) => res.data)
-      .then((data) => {
-        setReviews(data);
-        console.log(data);
-      })
-      .catch((err) => alert(`Error While Getting Reviews: \n${err}`));
+  const groupReviews = () => {
+    return sortedReviews.reduce((acc, review) => {
+      const listing_id = review.listing
+        ? review.listing.listing_id
+        : "NO LISTING";
+      if (listing_id) {
+        if (!acc[listing_id]) {
+          acc[listing_id] = [];
+        }
+        acc[listing_id].push(review);
+      }
+      return acc;
+    }, {});
   };
 
   const deleteReview = (id) => {
@@ -61,6 +82,10 @@ function Home() {
         getReviews();
       })
       .catch((err) => alert(`Error While Deleting All Reviews:\n${err}`));
+  };
+
+  const handleSortChange = (e) => {
+    setSortCriteria(e.target.value);
   };
 
   const handleFileChange = (event) => {
@@ -87,14 +112,10 @@ function Home() {
     navigate("/logout");
   };
 
-  const handleSortChange = (e) => {
-    setSortCriteria(e.target.value);
-  };
-
   return (
     <div className="container">
       <div className="header-section">
-        <h1>{reviews.length} Reviews Displayed:</h1>
+        <h1>{allReviews.length} Reviews Displayed:</h1>
         <div>
           <h2>Sort by: </h2>
           <select onChange={handleSortChange} value={sortCriteria}>
