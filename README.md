@@ -55,9 +55,9 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### 7/28/24
 >
+> - ❌ 
 > - ✅ Update backend to delete listing objects when all related reviews are deleted
 > - ✅ Allow user to delete all of their stored reviews
-> - ❌ 
 >
 > ### 7/27/24
 >
