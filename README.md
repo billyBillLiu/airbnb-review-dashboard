@@ -31,31 +31,31 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### 8/01/24
 >
-> - 🚧 Create a new listing list component and display the reviews under their respective listings
+> - ✅ Create a new listing list component and display the reviews under their respective listings
 > - 🚧 Update backend to include listing picture in Listing object
 > - 🚧 Display the listing picture as part of the listing section header
 >
 > ### 7/31/24
 >
-> - ❌ 
-> - ❌ 
-> - ❌ 
+> - ❌
+> - ❌
+> - ❌
 >
 > ### 7/30/24
 >
-> - ❌ 
-> - ❌ 
-> - ❌ 
+> - ❌
+> - ❌
+> - ❌
 >
 > ### 7/29/24
 >
 > - ❌
-> - ❌ 
-> - ❌ 
+> - ❌
+> - ❌
 >
 > ### 7/28/24
 >
-> - ❌ 
+> - ❌
 > - ✅ Update backend to delete listing objects when all related reviews are deleted
 > - ✅ Allow user to delete all of their stored reviews
 >
