@@ -1,10 +1,11 @@
 .review-container {
   padding: 20px;
   border: none; /* Remove the border */
+  margin-bottom: 10px;
   border-radius: 10px;
   background-color: #4a4a4a; /* Darker gray for review containers */
-  box-sizing: border-box; /* Ensure padding and border are included in the element’s total width and height */
   min-height: 300px; /* Increase the height for a larger square */
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,7 +35,6 @@
   color: #ccc; /* Lighter gray text for comments */
   font-size: 1rem; /* Larger font size */
   flex-grow: 1; /* Allows the comment to take up remaining space */
-  overflow: auto; /* Adds scroll within the content area if needed */
 }
 
 .review-date {

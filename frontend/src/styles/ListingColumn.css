@@ -1,0 +1,20 @@
+.listing-column {
+  flex: 0 0 auto; /* Prevent columns from shrinking or growing */
+  max-height: 80vh; /* Adjust this value as needed to fit your layout */
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-column h2 {
+  background-color: #4a4a4a; /* Darker gray for review containers */
+  border-radius: 10px;
+  text-align: center;
+}
+
+.group-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between reviews */
+  overflow-y: auto; /* Adds vertical scroll if content overflows */
+}

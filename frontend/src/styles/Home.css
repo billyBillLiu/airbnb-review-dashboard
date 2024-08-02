@@ -34,14 +34,11 @@ body {
 
 .reviews-section {
   flex: 1; /* Takes up available space */
-  overflow-y: auto; /* Adds vertical scroll if content overflows */
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(300px, 1fr)
-  ); /* Adjust minmax value for larger squares */
-  gap: 20px; /* Space between grid items */
+  overflow-x: auto; /* Adds horizontal scroll if content overflows */
+  overflow-y: hidden; /* Prevent vertical scroll */
+  padding: 10px;
+  display: flex; /* Use flexbox for horizontal alignment */
+  gap: 20px; /* Space between columns */
   background-color: #3e3e3e; /* Dark brownish gray background for reviews section */
 }
 

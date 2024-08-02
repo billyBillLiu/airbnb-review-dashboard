@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import Review from "../components/Review";
+import ListingColumn from "../components/ListingColumn";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 
@@ -18,8 +18,11 @@ function Home() {
 
   useEffect(() => {
     setSortedReviews(sortReviews(allReviews));
-    setGroupedReviews(groupReviews(sortedReviews));
   }, [allReviews, sortCriteria]);
+
+  useEffect(() => {
+    setGroupedReviews(groupReviews(sortedReviews));
+  }, [sortedReviews]);
 
   const getReviews = () => {
     api
@@ -62,16 +65,6 @@ function Home() {
       }
       return acc;
     }, {});
-  };
-
-  const deleteReview = (id) => {
-    api
-      .delete(`/api/reviews/delete/${id}/`)
-      .then((res) => {
-        if (res.status !== 204) alert("Failed to delete review");
-        getReviews();
-      })
-      .catch((err) => alert(`Error While Deleting Review: \n${err}`));
   };
 
   const deleteAllReviews = () => {
@@ -127,8 +120,8 @@ function Home() {
         </div>
       </div>
       <div className="reviews-section">
-        {sortedReviews.map((review) => (
-          <Review review={review} onDelete={deleteReview} key={review.id} />
+        {Object.values(groupedReviews).map((reviews) => (
+          <ListingColumn reviews={reviews} />
         ))}
       </div>
       <div className="footer-section">
