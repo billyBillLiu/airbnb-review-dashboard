@@ -23,6 +23,12 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 - 🚧: _In Progress_
 - ❌: _Missed / Slack_
 
+> ### 8/03/24
+>
+> - 🚧 ???
+> - 🚧 ???
+> - 🚧 ???
+>
 > ### 8/02/24
 >
 > - 🚧 Allow user to rename each listing
