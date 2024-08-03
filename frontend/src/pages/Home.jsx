@@ -67,6 +67,16 @@ function Home() {
     }, {});
   };
 
+  const deleteReview = (id) => {
+    api
+      .delete(`/api/reviews/delete/${id}/`)
+      .then((res) => {
+        if (res.status !== 204) alert("Failed to delete review");
+        getReviews();
+      })
+      .catch((err) => alert(`Error While Deleting Review: \n${err}`));
+  };
+
   const deleteAllReviews = () => {
     api
       .delete("/api/reviews/delete-all/")
@@ -121,7 +131,7 @@ function Home() {
       </div>
       <div className="reviews-section">
         {Object.values(groupedReviews).map((reviews) => (
-          <ListingColumn reviews={reviews} />
+          <ListingColumn reviews={reviews} onDelete={deleteReview} />
         ))}
       </div>
       <div className="footer-section">

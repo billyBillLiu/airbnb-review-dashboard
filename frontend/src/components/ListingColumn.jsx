@@ -1,28 +1,26 @@
 import React from "react";
 import Review from "../components/Review";
-import api from "../api";
 import "../styles/ListingColumn.css";
 
-function ListingColumn({ reviews }) {
-  const deleteReview = (id) => {
-    api
-      .delete(`/api/reviews/delete/${id}/`)
-      .then((res) => {
-        if (res.status !== 204) alert("Failed to delete review");
-        getReviews();
-      })
-      .catch((err) => alert(`Error While Deleting Review: \n${err}`));
-  };
-
+function ListingColumn({ reviews, onDelete }) {
+  const listing = reviews[0].listing ? reviews[0].listing : null;
   return (
     <div className="listing-column">
-      <h2>
-        Listing:{" "}
-        {reviews[0].listing ? reviews[0].listing.listing_id : "NO LISTING"}
-      </h2>
-      <div className="group-container">
+      <div className="listing-container">
+        <p>{listing ? listing.name : "NO LISTING"}</p>
+        <a
+          href={
+            listing ? `https://www.airbnb.com/rooms/${listing.listing_id}` : "#"
+          }
+          target="_blank"
+        >
+          {listing ? "Link To Listing" : ""}
+        </a>
+      </div>
+
+      <div className="reviews-container">
         {reviews.map((review) => (
-          <Review review={review} onDelete={deleteReview} key={review.id} />
+          <Review review={review} onDelete={onDelete} key={review.id} />
         ))}
       </div>
     </div>

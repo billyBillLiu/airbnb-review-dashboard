@@ -40,6 +40,7 @@ body {
   display: flex; /* Use flexbox for horizontal alignment */
   gap: 20px; /* Space between columns */
   background-color: #3e3e3e; /* Dark brownish gray background for reviews section */
+  border-radius: 10px;
 }
 
 .footer-section {
