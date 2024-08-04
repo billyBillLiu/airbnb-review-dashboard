@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Listing
-        fields = ["listing_id", "name", "user"]
+        fields = ["listing_id", "name", "image", "user"]
         extra_kwargs = {
             'listing_id': {'read_only': True},
             'user': {'read_only': True}

@@ -4,6 +4,7 @@ body {
   padding: 0;
   height: 100%; /* Ensure that the html and body elements take full height */
   background-color: #353535;
+  font-family: "Montreal", sans-serif;
 }
 
 .container {

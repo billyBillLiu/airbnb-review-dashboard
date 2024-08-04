@@ -7,17 +7,19 @@ function ListingColumn({ reviews, onDelete }) {
   return (
     <div className="listing-column">
       <div className="listing-container">
-        <p>{listing ? listing.name : "NO LISTING"}</p>
         <a
           href={
             listing ? `https://www.airbnb.com/rooms/${listing.listing_id}` : "#"
           }
           target="_blank"
         >
-          {listing ? "Link To Listing" : ""}
+          <img src={listing ? listing.image : null} />
         </a>
+        <p>
+          <b>{listing ? listing.name : "NO LISTING"}</b>
+        </p>
+        <p> ({reviews.length})</p>
       </div>
-
       <div className="reviews-container">
         {reviews.map((review) => (
           <Review review={review} onDelete={onDelete} key={review.id} />

@@ -131,7 +131,11 @@ function Home() {
       </div>
       <div className="reviews-section">
         {Object.values(groupedReviews).map((reviews) => (
-          <ListingColumn reviews={reviews} onDelete={deleteReview} />
+          <ListingColumn
+            reviews={reviews}
+            onDelete={deleteReview}
+            key={reviews[0].listing ? reviews[0].listing.listing_id : 0}
+          />
         ))}
       </div>
       <div className="footer-section">

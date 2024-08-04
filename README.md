@@ -23,11 +23,17 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 - 🚧: _In Progress_
 - ❌: _Missed / Slack_
 
-> ### 8/03/24
+> ### 8/04/24
 >
 > - 🚧 ???
 > - 🚧 ???
 > - 🚧 ???
+>
+> ### 8/03/24
+>
+> - ❌ ???
+> - ❌ ???
+> - ❌ ???
 >
 > ### 8/02/24
 >
@@ -38,8 +44,8 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > ### 8/01/24
 >
 > - ✅ Create a new listing list component and display the reviews under their respective listings
-> - 🚧 Update backend to include listing picture in Listing object
-> - 🚧 Display the listing picture as part of the listing section header
+> - ✅ Update backend to include listing picture in Listing object
+> - ✅ Display the listing picture as part of the listing section header
 >
 > ### 7/31/24
 >

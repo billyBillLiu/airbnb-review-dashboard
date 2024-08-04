@@ -3,7 +3,7 @@
   border: none; /* Remove the border */
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: #4a4a4a; /* Darker gray for review containers */
+  background-color: #313131; /* Darker gray for review containers */
   height: auto; /* Increase the height for a larger square */
   width: 300px;
   display: flex;

@@ -44,11 +44,12 @@ class ProcessHarFile(APIView):
                 json_data = json.loads(entry)
             decoded_json.append(json_data)
 
-        # Extract data from json
+        # Extract data from json into a key value list
         extracted_review_data = []
         for key in decoded_json:
             reviews = key['data']['presentation']['userProfileContainer']['userProfileReviews']['reviews']
             for review in reviews:
+
                 review_id = review['id']
                 rating = review['rating']
                 comment = review['comments']
@@ -57,10 +58,13 @@ class ProcessHarFile(APIView):
                 if listing != None:
                     listing_id = listing['id']
                     listing_name = listing['name']
+                    listing_image = listing['pictureUrl']
                 else:
                     listing_id = None
                     listing_name = None
+                    listing_image = None
                 date = parse_datetime(review['createdAt'])
+
                 extracted_review_data.append({
                     'review_id': review_id,
                     'rating': rating,
@@ -68,6 +72,7 @@ class ProcessHarFile(APIView):
                     'reviewer': reviewer,
                     'listing_id': listing_id,
                     'listing_name': listing_name,
+                    'listing_image': listing_image,
                     'date': date
                 })
 
@@ -82,13 +87,16 @@ class ProcessHarFile(APIView):
                 # Gets existing listing or creates a new one if it exists
                 listing_id = review_data['listing_id']
                 listing_name = review_data['listing_name']
+                listing_image = review_data['listing_image']
                 listing, _ = Listing.objects.get_or_create(
-                    listing_id=listing_id,
+                    listing_id = listing_id,
                     user = current_user,
-                    defaults={'name': listing_name}
+                    defaults={
+                        'name': listing_name,
+                        'image': listing_image,
+                    }
                 )
                 
-
             Review.objects.update_or_create(
                 review_id=review_data['review_id'],
                 user=current_user,
