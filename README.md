@@ -24,8 +24,8 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 
 > ### TODO
 >
-> - 🚧 Allow user to give a nickname to each listing (backend)
-> - 🚧 Allow user to edit and give a nickname to each listing (frontend)
+> - 🚧 Allow user to assign a nickname to each listing (backend)
+> - 🚧 Allow user to click on the listing title and edit its nickname (frontend)
 > - 🚧 Make the upload har a dropdown.
 > - 🚧 Replace the delete button with an X in the top right of each review
 > - 🚧 Re-style all buttons and sort selection
