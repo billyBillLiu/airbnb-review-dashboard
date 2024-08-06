@@ -1,9 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import Review from "../components/Review";
 import "../styles/ListingColumn.css";
+import api from "../api";
 
-function ListingColumn({ reviews, onDelete }) {
+function ListingColumn({ reviews, onDelete, onUpdateListing }) {
   const listing = reviews[0].listing ? reviews[0].listing : null;
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [newName, setNewName] = useState(listing ? listing.name : "");
+
+  const handleTitleChange = (e) => {
+    setNewName(e.target.value);
+  };
+
   return (
     <div className="listing-column">
       <div className="listing-container">
@@ -15,9 +24,24 @@ function ListingColumn({ reviews, onDelete }) {
         >
           <img src={listing ? listing.image : null} />
         </a>
-        <p>
-          <b>{listing ? listing.name : "NO LISTING"}</b>
-        </p>
+        <div>
+          {isEditing ? (
+            <input
+              type="text"
+              value={newName}
+              onChange={handleTitleChange}
+              onBlur={() => {
+                setIsEditing(false);
+                onUpdateListing(listing.id, newName);
+              }}
+              autoFocus
+            />
+          ) : (
+            <p onClick={() => setIsEditing(true)}>
+              <b>{listing ? listing.name : "NO LISTING"}</b>
+            </p>
+          )}
+        </div>
         <p> ({reviews.length})</p>
       </div>
       <div className="reviews-container">

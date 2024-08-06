@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.utils.dateparse import parse_datetime
@@ -6,13 +5,57 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserSerializer, ReviewSerializer, ListingSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import Review,  Listing
+from .serializers import UserSerializer, ReviewSerializer, ListingSerializer
+from .models import Review, Listing
 import json
 from haralyzer import HarParser
 import base64
 import re
+
+class CreateReviewList(generics.ListCreateAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Review.objects.filter(user=self.request.user)
+    
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save(user=self.request.user)
+        else:
+            print(serializer.errors)
+
+class UpdateListingName(generics.UpdateAPIView):
+    serializer_class = ListingSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Listing.objects.filter(user=self.request.user)
+
+
+class DeleteReview(generics.DestroyAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Review.objects.filter(user=self.request.user)
+    
+
+class DeleteAllReviews(generics.GenericAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, _):
+        all_reviews = Review.objects.filter(user=self.request.user)
+        all_reviews.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
 
 
 
@@ -109,44 +152,3 @@ class ProcessHarFile(APIView):
                 }
             )
         return JsonResponse({'count': len(extracted_review_data)})
-
-
-class ReviewListCreate(generics.ListCreateAPIView):
-    serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        current_user = self.request.user
-        return Review.objects.filter(user=current_user)
-    
-    def perform_create(self, serializer):
-        if serializer.is_valid():
-            serializer.save(user=self.request.user)
-        else:
-            print(serializer.errors)
-
-class ReviewDelete(generics.DestroyAPIView):
-    serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        current_user = self.request.user
-        return Review.objects.filter(user=current_user)
-    
-class DeleteAllReviews(generics.GenericAPIView):
-    serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated]
-
-    def delete(self, _):
-        current_user=self.request.user
-        all_reviews = Review.objects.filter(user=current_user)
-        review_count = all_reviews.count()
-        all_reviews.delete()
-        return Response({'message': f'{review_count} reviews deleted.'}, status=status.HTTP_204_NO_CONTENT)
-
-
-
-class CreateUserView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [AllowAny]

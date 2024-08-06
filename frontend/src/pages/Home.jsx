@@ -72,7 +72,9 @@ function Home() {
       .delete(`/api/reviews/delete/${id}/`)
       .then((res) => {
         if (res.status !== 204) alert("Failed to delete review");
-        getReviews();
+        setAllReviews((prevReviews) =>
+          prevReviews.filter((review) => review.id !== id)
+        );
       })
       .catch((err) => alert(`Error While Deleting Review: \n${err}`));
   };
@@ -82,9 +84,21 @@ function Home() {
       .delete("/api/reviews/delete-all/")
       .then((res) => {
         if (res.status !== 204) alert("Failed to delete all reviews");
-        getReviews();
+        setAllReviews([]);
       })
       .catch((err) => alert(`Error While Deleting All Reviews:\n${err}`));
+  };
+
+  const handleUpdateListing = (id, name) => {
+    api
+      .patch(`/api/listings/${id}/update/`, {
+        name: name,
+      })
+      .then((res) => {
+        if (res.status !== 200) alert("Failed to Update Listing");
+        getReviews();
+      })
+      .catch((err) => alert(`Error While Updating Listing: \n${err}`));
   };
 
   const handleSortChange = (e) => {
@@ -102,6 +116,7 @@ function Home() {
     }
     const formData = new FormData();
     formData.append("har-file", file);
+
     api
       .post("/api/reviews/process-har-file/", formData)
       .then((res) => {
@@ -134,7 +149,8 @@ function Home() {
           <ListingColumn
             reviews={reviews}
             onDelete={deleteReview}
-            key={reviews[0].listing ? reviews[0].listing.listing_id : 0}
+            onUpdateListing={handleUpdateListing}
+            key={reviews[0].listing ? reviews[0].listing.id : 0}
           />
         ))}
       </div>
