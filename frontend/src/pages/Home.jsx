@@ -133,7 +133,10 @@ function Home() {
   return (
     <div className="container">
       <div className="header-section">
-        <h1>{allReviews.length} Reviews Displayed:</h1>
+        <h1>
+          {allReviews.length} Reviews {Object.keys(groupedReviews).length}{" "}
+          Listings
+        </h1>
         <div>
           <h2>Sort by: </h2>
           <select onChange={handleSortChange} value={sortCriteria}>
