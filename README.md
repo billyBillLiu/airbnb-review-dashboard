@@ -24,6 +24,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 
 > ### TODO
 >
+> - 🚧 Fix styling for the listing-container.
 > - 🚧 Make the upload har a dropdown.
 > - 🚧 Replace the delete button with an X in the top right of each review
 > - 🚧 Re-style all buttons and sort selection
