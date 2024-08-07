@@ -45,6 +45,7 @@ function ListingColumn({ reviews, onDelete, onUpdateListing }) {
                   type="text"
                   value={newName}
                   onChange={handleNameChange}
+                  onBlur={() => setIsEditing(false)}
                   autoFocus
                 />
               ) : (
