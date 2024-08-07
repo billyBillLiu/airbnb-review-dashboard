@@ -22,12 +22,20 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 - ✅: _Completed_
 - 🚧: _In Progress_
 
-> ### TODO
+> ### TODO (Long-term)
+>
+> - 📋 Utilize RAG and LLMs to generate responses to the reviews
+> - 📋 Utilize Topic Modelling to group the reviews into topics
+> - 📋 Utilize Sentiment analysis to color code the reviews
+> - 📋 Utilize LLMs to summarize each listing's reviews
+>
+> ### TODO (Tasks)
 >
 > - 🚧 Style the listing name editing input box.
 > - 🚧 Make the upload har a dropdown.
 > - 🚧 Replace the delete button with an X in the top right of each review
 > - 🚧 Re-style all buttons and sort selection
+> - 🚧 Make it so you cannot edit the NO LISTING column name
 >
 > ### 8/06/24
 >
