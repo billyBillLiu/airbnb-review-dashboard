@@ -24,10 +24,10 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 
 > ### TODO (Long-term)
 >
-> - 📋 Utilize RAG and LLMs to generate responses to the reviews
 > - 📋 Utilize Topic Modelling to group the reviews into topics
 > - 📋 Utilize Sentiment analysis to color code the reviews
 > - 📋 Utilize LLMs to summarize each listing's reviews
+> - 📋 Utilize RAG and LLMs to generate responses to the reviews
 >
 > ### TODO (Tasks)
 >
