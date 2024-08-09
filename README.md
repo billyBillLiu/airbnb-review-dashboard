@@ -31,11 +31,15 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### TODO (Tasks)
 >
-> - 🚧 Style the listing name editing input box.
 > - 🚧 Make the upload har a dropdown.
-> - 🚧 Replace the delete button with an X in the top right of each review
 > - 🚧 Re-style all buttons and sort selection
 > - 🚧 Make it so you cannot edit the NO LISTING column name
+>
+> ### 8/08/24
+>
+> - ✅ Make the delete button only show when hovering and move it to the bottom right.
+> - ✅ Style the listing name editing input box.
+> - ✅ Import button icons and replace the placeholder words
 >
 > ### 8/06/24
 >
