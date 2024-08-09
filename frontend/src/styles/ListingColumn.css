@@ -65,9 +65,8 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  height: 50px;
   background-color: #202020;
-  top: 70%;
+  top: 65%;
   left: 100%; /* Position the dropdown to the right of the listing container */
   transform: translateY(-50%) translateX(-5px); /* Offset by 50% of its height to achieve vertical centering */
   border-radius: 0 10px 10px 0; /* Optional: Add rounded corners */
@@ -84,13 +83,22 @@
 
 .edit-listing-button {
   cursor: pointer;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   padding: auto;
-  background-color: #5f5f5f;
+  background-color: #555555;
   color: white;
-  border-radius: 5px; /* Optional: Add rounded corners */
+  border-radius: 10px; /* Optional: Add rounded corners */
   flex: 1;
+}
+
+.edit-listing-button.save {
+  background-color: rgb(0, 119, 0);
+}
+
+.edit-icon-image {
+  height: 30px;
+  width: 30px;
 }
 
 .reviews-container {

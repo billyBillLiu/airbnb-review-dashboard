@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Review from "../components/Review";
 import "../styles/ListingColumn.css";
-import api from "../api";
+import save_icon from "../assets/save_icon.png";
+import edit_icon from "../assets/edit_icon.png";
 
 function ListingColumn({ reviews, onDelete, onUpdateListing }) {
   const listing = reviews[0].listing ? reviews[0].listing : null;
@@ -77,15 +78,15 @@ function ListingColumn({ reviews, onDelete, onUpdateListing }) {
           </div>
           <div className={`dropdown-menu ${isDropdownActive ? "active" : ""}`}>
             {isEditing ? (
-              <button className="edit-listing-button" type="submit">
-                Save
+              <button className="edit-listing-button save" type="submit">
+                <img className="edit-icon-image" src={save_icon} alt="Save" />
               </button>
             ) : (
               <button
                 className="edit-listing-button"
                 onClick={handleEditButtonClick}
               >
-                Edit
+                <img className="edit-icon-image" src={edit_icon} alt="Edit" />
               </button>
             )}
           </div>

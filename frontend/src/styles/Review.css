@@ -48,7 +48,7 @@
   position: absolute; /* Stay within the container */
   bottom: 0; /* Position at the bottom of the container */
   right: 10px; /* Center horizontally */
-  background-color: #ff000085; /* Hot red color */
+  background-color: #ff393985; /* Hot red color */
   width: 40px;
   height: 40px;
   color: white;
@@ -67,7 +67,7 @@
   transform: translateY(40%);
 }
 
-.delete-image {
+.delete-icon-image {
   width: 20px;
   height: 20px;
   margin: auto;

@@ -35,7 +35,7 @@ function Review({ review, onDelete }) {
         className={`delete-button ${isDropdownActive ? "active" : ""}`}
         onClick={() => onDelete(review.id)}
       >
-        <img className="delete-image" src={delete_icon} alt="Delete" />
+        <img className="delete-icon-image" src={delete_icon} alt="Delete" />
       </button>
     </div>
   );
