@@ -31,6 +31,10 @@
   color: white;
 }
 
+.listing-name:hover {
+  background-color: #20202036;
+}
+
 .listing-name a {
   color: rgb(255, 255, 255);
   text-decoration: none;
@@ -39,14 +43,10 @@
     -1px 1px 0 black;
 }
 
-.listing-name a:hover {
-  text-decoration: underline;
-}
-
 .listing-name input {
   border-radius: 10px;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1em;
   height: 50px;
   width: 250px;
   text-align: start;
