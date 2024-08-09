@@ -14,15 +14,21 @@ function ListingColumn({ reviews, onDelete, onUpdateListing }) {
     setNewName(e.target.value);
   };
 
-  const handleSaveButtonClick = (e) => {
+  const handleSaveButtonClick = async (e) => {
     e.preventDefault();
+    await onUpdateListing(listing.id, newName);
     setIsEditing(false);
-    onUpdateListing(listing.id, newName);
   };
 
   const handleEditButtonClick = (e) => {
     e.preventDefault();
     setIsEditing(true);
+  };
+
+  const handleBlur = (e) => {
+    if (!e.relatedTarget || e.relatedTarget.type !== "submit") {
+      setIsEditing(false);
+    }
   };
 
   return (
@@ -45,7 +51,7 @@ function ListingColumn({ reviews, onDelete, onUpdateListing }) {
                   type="text"
                   value={newName}
                   onChange={handleNameChange}
-                  onBlur={() => setIsEditing(false)}
+                  onBlur={handleBlur}
                   autoFocus
                 />
               ) : (

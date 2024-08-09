@@ -14,7 +14,6 @@
   width: 350px;
   height: 175px;
   box-sizing: border-box;
-  align-items: center;
   padding: 15px;
   margin-bottom: 20px;
   justify-content: space-between;
@@ -26,6 +25,7 @@
 }
 
 .listing-name {
+  margin: auto;
   border-radius: 10px;
   text-align: center;
   color: white;
@@ -41,6 +41,15 @@
 
 .listing-name a:hover {
   text-decoration: underline;
+}
+
+.listing-name input {
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.5em;
+  height: 50px;
+  width: 250px;
+  text-align: start;
 }
 
 .listing-name p {
