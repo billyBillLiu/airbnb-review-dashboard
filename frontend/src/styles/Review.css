@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .review-title {
@@ -39,18 +41,38 @@
 .review-date {
   color: #aaa; /* Lighter gray for date */
   font-size: 0.9rem; /* Slightly smaller font size */
+  margin-bottom: 0;
 }
 
 .delete-button {
-  background-color: #94230f7a; /* Hot red color */
+  position: absolute; /* Stay within the container */
+  bottom: 0; /* Position at the bottom of the container */
+  right: 10px; /* Center horizontally */
+  background-color: #ff000085; /* Hot red color */
+  width: 40px;
+  height: 40px;
   color: white;
-  border: none;
-  padding: 12px 12px;
+  border: 2px solid #202020;
+  margin: auto;
   border-radius: 20px;
   cursor: pointer;
-  margin: 5, 0;
+  opacity: 0;
+  transform: translateY(20%);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.delete-button.active {
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(40%);
+}
+
+.delete-image {
+  width: 20px;
+  height: 20px;
+  margin: auto;
 }
 
 .delete-button:hover {
-  background-color: #94230f; /* Darker hot red for hover effect */
+  background-color: #ff0000; /* Darker hot red for hover effect */
 }

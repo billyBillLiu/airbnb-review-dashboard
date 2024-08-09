@@ -1,7 +1,9 @@
-import React from "react";
+import { React, useState } from "react";
 import "../styles/Review.css";
+import delete_icon from "../assets/delete_icon.png";
 
 function Review({ review, onDelete }) {
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
   // Formatting Datetime Object into String
   const date = new Date(review.date);
   const options = {
@@ -14,7 +16,11 @@ function Review({ review, onDelete }) {
   const formattedDate = date.toLocaleString("en-US", options);
 
   return (
-    <div className="review-container">
+    <div
+      className="review-container"
+      onMouseEnter={() => setIsDropdownActive(true)} // Show delete button on hover
+      onMouseLeave={() => setIsDropdownActive(false)} // Hide delete button when not hovering
+    >
       <div className="review-title">
         <p>{review.reviewer} </p>
         <p>{review.rating}&#11088;</p>
@@ -25,8 +31,11 @@ function Review({ review, onDelete }) {
       </p>
       <p className="review-content">{review.comment}</p>
       <p className="review-date">{formattedDate}</p>
-      <button className="delete-button" onClick={() => onDelete(review.id)}>
-        Delete
+      <button
+        className={`delete-button ${isDropdownActive ? "active" : ""}`}
+        onClick={() => onDelete(review.id)}
+      >
+        <img className="delete-image" src={delete_icon} alt="Delete" />
       </button>
     </div>
   );
