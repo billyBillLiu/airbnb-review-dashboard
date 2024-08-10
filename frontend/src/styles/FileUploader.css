@@ -1,0 +1,47 @@
+.file-upload-container {
+  flex-shrink: 0;
+  height: 200px;
+  width: 200px;
+  padding: 0 20px 0 0;
+  margin: auto;
+}
+
+.file-upload-form {
+  background-color: #6d6d6d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #202020;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+.file-name {
+  font-size: 1.2em;
+  margin: 0;
+  font-weight: bold;
+  color: #202020;
+}
+
+.upload-file-button,
+.clear-file-button {
+  height: 30px;
+  flex: 1;
+  border-radius: 15px;
+  border: 2px solid #202020;
+  cursor: pointer;
+}
+
+.clear-file-button {
+  width: 31px;
+  background-color: rgba(202, 47, 47, 0.678);
+}
+
+.upload-file-button {
+  width: 169px;
+  background-color: #c7c7c7;
+}

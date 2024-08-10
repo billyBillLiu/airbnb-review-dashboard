@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import ListingColumn from "../components/ListingColumn";
+import FileUploader from "../components/FileUploader";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 
 function Home() {
-  const [file, setFile] = useState(null);
   const [allReviews, setAllReviews] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
   const [groupedReviews, setGroupedReviews] = useState({});
@@ -105,27 +105,6 @@ function Home() {
     setSortCriteria(e.target.value);
   };
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const handleUpload = async () => {
-    if (!file) {
-      alert("Please select a file to upload.");
-      return;
-    }
-    const formData = new FormData();
-    formData.append("har-file", file);
-
-    api
-      .post("/api/reviews/process-har-file/", formData)
-      .then((res) => {
-        if (res.status !== 200) alert("Failed to Process File");
-        getReviews();
-      })
-      .catch((err) => alert(`Error While Processing File: \n${err}`));
-  };
-
   const handleLogout = () => {
     navigate("/logout");
   };
@@ -134,17 +113,22 @@ function Home() {
     <div className="container">
       <div className="header-section">
         <h1>
-          {allReviews.length} Reviews {Object.keys(groupedReviews).length}{" "}
-          Listings
-        </h1>
-        <div>
-          <h2>Sort by: </h2>
+          {allReviews.length} Reviews from {Object.keys(groupedReviews).length}{" "}
+          Listings Sorted by:
           <select onChange={handleSortChange} value={sortCriteria}>
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
             <option value="highest">Highest Rating</option>
             <option value="lowest">Lowest Rating</option>
           </select>
+        </h1>
+        <div className="header-buttons-div">
+          <button className="delete-all-button" onClick={deleteAllReviews}>
+            CLEAR ALL DATA
+          </button>
+          <button className="logout-button" onClick={handleLogout}>
+            Log Out
+          </button>
         </div>
       </div>
       <div className="reviews-section">
@@ -156,17 +140,7 @@ function Home() {
             key={reviews[0].listing ? reviews[0].listing.id : 0}
           />
         ))}
-      </div>
-      <div className="footer-section">
-        <div>
-          <h2>Upload The .HAR File Retrieved From Your Airbnb Reviews Page</h2>
-          <input type="file" accept=".har" onChange={handleFileChange} />
-          <button onClick={handleUpload}>Upload</button>
-        </div>
-        <div className="footer-buttons">
-          <button onClick={deleteAllReviews}>Delete All Reviews</button>
-          <button onClick={handleLogout}>Log Out</button>
-        </div>
+        <FileUploader onUpdate={getReviews} />
       </div>
     </div>
   );

@@ -10,18 +10,17 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  padding: 30px;
   color: #fff;
   height: 100vh; /* Full viewport height */
-  background-color: #353535;
+  background-color: #3e3e3e;
   box-sizing: border-box; /* Include padding and border in height calculation */
 }
 
 .header-section {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  height: 100px;
   justify-content: space-between;
+  padding: 0 20px 0 20px;
 }
 
 .header-section div {
@@ -31,28 +30,49 @@ body {
 
 .header-section select {
   margin: 10px;
+  height: 40px;
+  font-size: 1em;
+  background-color: #252525;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 0 10px;
+}
+
+.header-buttons-div {
+  gap: 10px;
+}
+
+.delete-all-button,
+.logout-button {
+  display: flex;
+  height: 75px;
+  flex-shrink: 0;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  color: white;
+  border-radius: 25px;
+  border: 2px solid #202020;
+  margin: auto;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-all-button {
+  background-color: rgb(131, 0, 0);
+}
+
+.logout-button {
+  background-color: #0a0a0a;
 }
 
 .reviews-section {
   flex: 1; /* Takes up available space */
   overflow-x: auto; /* Adds horizontal scroll if content overflows */
   overflow-y: hidden; /* Prevent vertical scroll */
-  padding: 10px;
+  padding: 0 10px 0 10px;
   display: flex; /* Use flexbox for horizontal alignment */
   gap: 20px; /* Space between columns */
-  background-color: #3e3e3e; /* Dark brownish gray background for reviews section */
-  border-radius: 10px;
-}
-
-.footer-section {
-  display: flex;
-  flex-direction: row;
-  color: #fff;
-  justify-content: space-between;
-}
-
-.footer-buttons button {
-  height: 30px;
-  margin-left: 10px;
-  margin-top: 10px;
 }
