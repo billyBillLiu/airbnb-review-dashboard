@@ -33,7 +33,10 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > - 🚧 Make it so you can drag files into the upload file form
 > - 🚧 Add a confirmation menu for the clear all data button
-> - 🚧 Add a loading indicator for when the har file is processing
+>
+> ### 8/10/24
+>
+> - ✅ Add a loading indicator for when the har file is processing
 >
 > ### 8/09/24
 >

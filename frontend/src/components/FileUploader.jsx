@@ -2,10 +2,12 @@ import { useState } from "react";
 import "../styles/FileUploader.css";
 import upload_icon from "../assets/upload_icon.png";
 import api from "../api";
+import LoadingIndicator from "./LoadingIndicator";
 
 function FileUploader({ onUpdate }) {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -18,6 +20,7 @@ function FileUploader({ onUpdate }) {
       alert("Please select a file to upload.");
       return;
     }
+    setLoading(true);
     const formData = new FormData();
     formData.append("har-file", file);
 
@@ -26,6 +29,7 @@ function FileUploader({ onUpdate }) {
       .then((res) => {
         if (res.status !== 200) alert("Failed to Process File");
         onUpdate();
+        setLoading(false);
       })
       .catch((err) => alert(`Error While Processing File: \n${err}`));
   };
@@ -48,7 +52,11 @@ function FileUploader({ onUpdate }) {
           onChange={handleFileChange}
           hidden
         />
-        <img className="uploade-icon-image" src={upload_icon} alt="upload" />
+        {loading ? (
+          <LoadingIndicator />
+        ) : (
+          <img src={upload_icon} alt="upload" />
+        )}
         <p className="file-name">
           {file ? `[ ${fileName} ]` : "No File Selected"}
         </p>
