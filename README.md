@@ -31,19 +31,25 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### TODO (Tasks)
 >
-> - 🚧 Make the upload har a dropdown.
-> - 🚧 Re-style all buttons and sort selection
-> - 🚧 Make it so you cannot edit the NO LISTING column name
+> - 🚧 Make it so you can drag files into the upload file form
+> - 🚧 Add a confirmation menu for the clear all data button
+> - 🚧 Add a loading indicator for when the har file is processing
+>
+> ### 8/09/24
+>
+> - ✅ Move the upload har to the review-section
+> - ✅ Restyle the buttons and sort selection
+> - ✅ Make it so you cannot edit the NO LISTING column name
 >
 > ### 8/08/24
 >
-> - ✅ Make the delete button only show when hovering and move it to the bottom right.
-> - ✅ Style the listing name editing input box.
+> - ✅ Make the delete button only show when hovering and move it to the bottom right
+> - ✅ Style the listing name editing input box
 > - ✅ Import button icons and replace the placeholder words
 >
 > ### 8/06/24
 >
-> - ✅ Fix styling for the listing-container.
+> - ✅ Fix styling for the listing-container
 > - ✅ Create listing editing/deleting buttons in a popout/dropdown style menu
 > - ✅ Create a save button and allow the user to submit the name using the enter key
 >
