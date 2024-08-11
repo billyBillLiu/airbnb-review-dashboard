@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "../styles/FileUploader.css";
-import upload_icon from "../assets/upload_icon.png";
 import api from "../api";
 import LoadingIndicator from "./LoadingIndicator";
+import upload_icon from "../assets/upload_icon.png";
+import "../styles/FileUploader.css";
 
-function FileUploader({ onUpdate }) {
+function FileUploader({ refreshReviews }) {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,10 +28,12 @@ function FileUploader({ onUpdate }) {
       .post("/api/reviews/process-har-file/", formData)
       .then((res) => {
         if (res.status !== 200) alert("Failed to Process File");
-        onUpdate();
-        setLoading(false);
+        refreshReviews();
       })
-      .catch((err) => alert(`Error While Processing File: \n${err}`));
+      .catch((err) => {
+        alert(`Error While Processing File: \n${err}`);
+      })
+      .finally(() => setLoading(false));
   };
 
   const clearFile = () => {

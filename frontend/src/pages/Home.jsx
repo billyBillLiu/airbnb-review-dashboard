@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api";
 import ListingColumn from "../components/ListingColumn";
 import FileUploader from "../components/FileUploader";
 import ConfirmationMenu from "../components/ConfirmationMenu";
-import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 
 function Home() {
@@ -38,6 +38,17 @@ function Home() {
       .catch((err) => alert(`Error While Getting Reviews: \n${err}`));
   };
 
+  const deleteAllReviews = () => {
+    setShowConfirmation(false);
+    api
+      .delete("/api/reviews/delete-all/")
+      .then((res) => {
+        if (res.status !== 204) alert("Failed to delete all reviews");
+        setAllReviews([]);
+      })
+      .catch((err) => alert(`Error While Deleting All Reviews:\n${err}`));
+  };
+
   const sortReviews = (reviews) => {
     let sorted = [];
     if (sortCriteria === "newest") {
@@ -70,39 +81,10 @@ function Home() {
     }, {});
   };
 
-  const deleteReview = (id) => {
-    api
-      .delete(`/api/reviews/delete/${id}/`)
-      .then((res) => {
-        if (res.status !== 204) alert("Failed to delete review");
-        setAllReviews((prevReviews) =>
-          prevReviews.filter((review) => review.id !== id)
-        );
-      })
-      .catch((err) => alert(`Error While Deleting Review: \n${err}`));
-  };
-
-  const deleteAllReviews = () => {
-    setShowConfirmation(false);
-    api
-      .delete("/api/reviews/delete-all/")
-      .then((res) => {
-        if (res.status !== 204) alert("Failed to delete all reviews");
-        setAllReviews([]);
-      })
-      .catch((err) => alert(`Error While Deleting All Reviews:\n${err}`));
-  };
-
-  const handleUpdateListing = (id, name) => {
-    api
-      .patch(`/api/listings/${id}/update/`, {
-        name: name,
-      })
-      .then((res) => {
-        if (res.status !== 200) alert("Failed to Update Listing");
-        getReviews();
-      })
-      .catch((err) => alert(`Error While Updating Listing: \n${err}`));
+  const removeSpecificReview = (id) => {
+    setAllReviews((prevReviews) =>
+      prevReviews.filter((review) => review.id !== id)
+    );
   };
 
   const handleSortChange = (e) => {
@@ -142,12 +124,12 @@ function Home() {
         {Object.values(groupedReviews).map((reviews) => (
           <ListingColumn
             reviews={reviews}
-            onDelete={deleteReview}
-            onUpdateListing={handleUpdateListing}
+            onDelete={removeSpecificReview}
+            refreshReviews={getReviews}
             key={reviews[0].listing ? reviews[0].listing.id : 0}
           />
         ))}
-        <FileUploader onUpdate={getReviews} />
+        <FileUploader refreshReviews={getReviews} />
       </div>
       {showConfirmation && (
         <ConfirmationMenu

@@ -1,9 +1,11 @@
 import { React, useState } from "react";
-import "../styles/Review.css";
+import api from "../api";
 import delete_icon from "../assets/delete_icon.png";
+import "../styles/Review.css";
 
 function Review({ review, onDelete }) {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
+
   // Formatting Datetime Object into String
   const date = new Date(review.date);
   const options = {
@@ -14,6 +16,16 @@ function Review({ review, onDelete }) {
     minute: "2-digit",
   };
   const formattedDate = date.toLocaleString("en-US", options);
+
+  const deleteReview = (id) => {
+    api
+      .delete(`/api/reviews/delete/${id}/`)
+      .then((res) => {
+        if (res.status !== 204) alert("Failed to delete review");
+        onDelete(id);
+      })
+      .catch((err) => alert(`Error While Deleting Review: \n${err}`));
+  };
 
   return (
     <div
@@ -33,7 +45,7 @@ function Review({ review, onDelete }) {
       <p className="review-date">{formattedDate}</p>
       <button
         className={`delete-button ${isDropdownActive ? "active" : ""}`}
-        onClick={() => onDelete(review.id)}
+        onClick={() => deleteReview(review.id)}
       >
         <img className="delete-icon-image" src={delete_icon} alt="Delete" />
       </button>

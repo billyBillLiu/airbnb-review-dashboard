@@ -1,15 +1,28 @@
 import { useState } from "react";
+import api from "../api";
 import Review from "../components/Review";
-import "../styles/ListingColumn.css";
 import save_icon from "../assets/save_icon.png";
 import edit_icon from "../assets/edit_icon.png";
+import "../styles/ListingColumn.css";
 
-function ListingColumn({ reviews, onDelete, onUpdateListing }) {
+function ListingColumn({ reviews, onDelete, refreshReviews }) {
   const listing = reviews[0].listing ? reviews[0].listing : null;
 
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(listing ? listing.name : "");
   const [isDropdownActive, setIsDropdownActive] = useState(false); // State to manage dropdown visibility
+
+  const handleUpdateListing = (id, name) => {
+    api
+      .patch(`/api/listings/${id}/update/`, {
+        name: name,
+      })
+      .then((res) => {
+        if (res.status !== 200) alert("Failed to Update Listing");
+        refreshReviews();
+      })
+      .catch((err) => alert(`Error While Updating Listing: \n${err}`));
+  };
 
   const handleNameChange = (e) => {
     setNewName(e.target.value);
@@ -17,7 +30,7 @@ function ListingColumn({ reviews, onDelete, onUpdateListing }) {
 
   const handleSaveButtonClick = async (e) => {
     e.preventDefault();
-    await onUpdateListing(listing.id, newName);
+    await handleUpdateListing(listing.id, newName);
     setIsEditing(false);
   };
 

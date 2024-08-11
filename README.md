@@ -24,18 +24,17 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 
 > ### TODO (Long-term)
 >
-> - 📋 Utilize Topic Modelling to group the reviews into topics
 > - 📋 Utilize Sentiment analysis to color code the reviews
 > - 📋 Utilize LLMs to summarize each listing's reviews
-> - 📋 Utilize RAG and LLMs to generate responses to the reviews
+> - 📋 Utilize Topic Modelling to group the reviews into topics
 >
 > ### TODO (Tasks)
 >
-> - 🚧 Add a confirmation menu for the clear all data button
 > - 🚧 Refactor the ListingColumn component and move all the api calls to their respective components
 >
 > ### 8/10/24
 >
+> - ✅ Add a confirmation menu for the clear all data button
 > - ✅ Add a loading indicator for when the har file is processing
 >
 > ### 8/09/24
