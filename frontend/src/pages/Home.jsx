@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../api";
 import ListingColumn from "../components/ListingColumn";
 import FileUploader from "../components/FileUploader";
+import ConfirmationMenu from "../components/ConfirmationMenu";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 
@@ -10,6 +11,8 @@ function Home() {
   const [sortedReviews, setSortedReviews] = useState([]);
   const [groupedReviews, setGroupedReviews] = useState({});
   const [sortCriteria, setSortCriteria] = useState("newest");
+  const [showConfirmation, setShowConfirmation] = useState(false); // State for showing confirmation
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,6 +83,7 @@ function Home() {
   };
 
   const deleteAllReviews = () => {
+    setShowConfirmation(false);
     api
       .delete("/api/reviews/delete-all/")
       .then((res) => {
@@ -123,7 +127,10 @@ function Home() {
           </select>
         </h1>
         <div className="header-buttons-div">
-          <button className="delete-all-button" onClick={deleteAllReviews}>
+          <button
+            className="delete-all-button"
+            onClick={() => setShowConfirmation(true)}
+          >
             CLEAR ALL DATA
           </button>
           <button className="logout-button" onClick={handleLogout}>
@@ -142,6 +149,13 @@ function Home() {
         ))}
         <FileUploader onUpdate={getReviews} />
       </div>
+      {showConfirmation && (
+        <ConfirmationMenu
+          message="Are you sure you want to clear all data? This action cannot be undone."
+          onConfirm={deleteAllReviews}
+          onCancel={() => setShowConfirmation(false)}
+        />
+      )}
     </div>
   );
 }

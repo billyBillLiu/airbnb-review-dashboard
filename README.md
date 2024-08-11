@@ -31,8 +31,8 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### TODO (Tasks)
 >
-> - 🚧 Make it so you can drag files into the upload file form
 > - 🚧 Add a confirmation menu for the clear all data button
+> - 🚧 Refactor the ListingColumn component and move all the api calls to their respective components
 >
 > ### 8/10/24
 >
