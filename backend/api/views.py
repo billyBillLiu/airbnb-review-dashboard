@@ -157,3 +157,20 @@ class ProcessHarFile(APIView):
                 }
             )
         return JsonResponse({'count': len(extracted_review_data)})
+    
+class ClassifyListingSentiment(APIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        listing = self.kwargs['pk']
+        reviews = Review.objects.filter(user=self.request.user, listing=listing, sentiment__isnull=True)
+
+        comments = [review.comment for review in reviews]
+        model_output = sentiment_classifier(comments)
+
+        for index, review in enumerate(reviews):
+            review.sentiment = model_output[index][0]['label']
+            review.save
+
+        return Response({'message': 'Sentiment analysis complete'})

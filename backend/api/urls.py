@@ -7,5 +7,5 @@ urlpatterns = [
     path("reviews/delete/<int:pk>/", views.DeleteReview.as_view(), name="delete-review"),
     path("reviews/delete-all/", views.DeleteAllReviews.as_view(), name="delete-all-reviews"),
     path("listings/<int:pk>/update/", views.UpdateListingName.as_view(), name='update-listing-name'),
-
+    path("listings/<int:pk>/classify-sentiment/", views.ClassifyListingSentiment.as_view(), name='classify-sentiment')
 ]
