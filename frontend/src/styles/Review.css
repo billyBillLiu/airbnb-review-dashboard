@@ -26,10 +26,25 @@
   margin: 0;
 }
 
-.review-listing {
-  color: #aaa; /* Lighter gray for date */
-  font-size: 0.9rem; /* Slightly smaller font size */
+.review-sentiment {
+  color: #ffffff; /* Lighter gray for date */
+  font-size: 1.2rem; /* Slightly smaller font size */
+  font-weight: bold;
   margin: 0;
+  margin: -20px -20px 20px -20px; /* Add this line */
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.review-sentiment.positive {
+  background-color: #002900;
+}
+.review-sentiment.negative {
+  background-color: #380000;
+}
+.review-sentiment.neutral {
+  background-color: #222222;
 }
 
 .review-content {
@@ -48,7 +63,7 @@
   position: absolute; /* Stay within the container */
   bottom: 0; /* Position at the bottom of the container */
   right: 10px; /* Center horizontally */
-  background-color: #ff393985; /* Hot red color */
+  background-color: rgb(153, 1, 1);
   width: 40px;
   height: 40px;
   color: white;

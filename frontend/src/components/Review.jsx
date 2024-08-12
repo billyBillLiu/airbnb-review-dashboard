@@ -17,6 +17,70 @@ function Review({ review, onDelete }) {
   };
   const formattedDate = date.toLocaleString("en-US", options);
 
+  const sentimentEmojiMap = {
+    approval: "👍",
+    neutral: "😐",
+    admiration: "🤩",
+    caring: "❤️",
+    optimism: "🌞",
+    gratitude: "🙏",
+    realization: "💡",
+    relief: "🙌",
+    joy: "😊",
+    disapproval: "👎",
+    desire: "😍",
+    love: "💕",
+    annoyance: "😒",
+    excitement: "🎉",
+    pride: "💪",
+    disappointment: "☹️",
+    disgust: "🤢",
+    confusion: "🤔",
+    curiosity: "🤓",
+    sadness: "☹️",
+    anger: "😠",
+    amusement: "😄",
+    fear: "😨",
+    surprise: "😮",
+    remorse: "🤕",
+    nervousness: "😬",
+    grief: "😭",
+    embarrassment: "🙈",
+  };
+
+  const sentimentColorMap = {
+    admiration: "positive",
+    approval: "positive",
+    caring: "positive",
+    desire: "positive",
+    excitement: "positive",
+    gratitude: "positive",
+    joy: "positive",
+    love: "positive",
+    optimism: "positive",
+    pride: "positive",
+    realization: "positive",
+    relief: "positive",
+    amusement: "positive",
+
+    anger: "negative",
+    annoyance: "negative",
+    disapproval: "negative",
+    disgust: "negative",
+    disappointment: "negative",
+    fear: "negative",
+    sadness: "negative",
+    remorse: "negative",
+    grief: "negative",
+    embarrassment: "negative",
+    nervousness: "negative",
+
+    confusion: "neutral",
+    curiosity: "neutral",
+    neutral: "neutral",
+    surprise: "neutral",
+  };
+
   const deleteReview = (id) => {
     api
       .delete(`/api/reviews/delete/${id}/`)
@@ -33,18 +97,17 @@ function Review({ review, onDelete }) {
       onMouseEnter={() => setIsDropdownActive(true)} // Show delete button on hover
       onMouseLeave={() => setIsDropdownActive(false)} // Hide delete button when not hovering
     >
+      <div
+        className={`review-sentiment ${sentimentColorMap[review.sentiment]}`}
+      >
+        {review.sentiment.toUpperCase()} {sentimentEmojiMap[review.sentiment]}{" "}
+      </div>
       <div className="review-title">
         <p>{review.reviewer} </p>
         <p>{review.rating}&#11088;</p>
       </div>
-
-      <p className="review-listing">
-        {review.listing ? review.listing.name : "NO LISTING DETECTED"}
-      </p>
       <p className="review-content">{review.comment}</p>
-      <p className="review-date">
-        {formattedDate} {review.sentiment ? `[${review.sentiment}]` : ""}
-      </p>
+      <p className="review-date">{formattedDate}</p>
       <button
         className={`delete-button ${isDropdownActive ? "active" : ""}`}
         onClick={() => deleteReview(review.id)}

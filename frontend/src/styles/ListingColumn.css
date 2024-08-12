@@ -12,6 +12,8 @@
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar {
