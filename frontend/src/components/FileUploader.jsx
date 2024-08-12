@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api";
-import LoadingIndicator from "./LoadingIndicator";
+import LoadingIndicator from "./assets/LoadingIndicator";
 import upload_icon from "../assets/upload_icon.png";
 import "../styles/FileUploader.css";
 

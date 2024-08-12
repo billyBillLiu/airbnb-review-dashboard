@@ -1,7 +1,7 @@
-import Form from "../components/Form";
+import AuthForm from "../components/auth/AuthForm";
 
 function Register() {
-  return <Form route="/api/user/register/" method="register" />;
+  return <AuthForm route="/api/user/register/" method="register" />;
 }
 
 export default Register;

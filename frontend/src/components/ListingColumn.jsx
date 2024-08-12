@@ -89,25 +89,23 @@ function ListingColumn({ reviews, onDelete, refreshReviews }) {
               )}
             </div>
           </div>
-          {listing && (
-            <div
-              className={`dropdown-menu ${isDropdownActive ? "active" : ""}`}
-            >
-              {isEditing ? (
-                <button className="edit-listing-button save" type="submit">
-                  <img className="edit-icon-image" src={save_icon} alt="Save" />
-                </button>
-              ) : (
-                <button
-                  className="edit-listing-button"
-                  onClick={handleEditButtonClick}
-                >
-                  <img className="edit-icon-image" src={edit_icon} alt="Edit" />
-                </button>
-              )}
-            </div>
-          )}
         </form>
+        {listing && (
+          <div className={`dropdown-menu ${isDropdownActive ? "active" : ""}`}>
+            {isEditing ? (
+              <button className="edit-listing-button save" type="submit">
+                <img className="edit-icon-image" src={save_icon} alt="Save" />
+              </button>
+            ) : (
+              <button
+                className="edit-listing-button"
+                onClick={handleEditButtonClick}
+              >
+                <img className="edit-icon-image" src={edit_icon} alt="Edit" />
+              </button>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="reviews-container">

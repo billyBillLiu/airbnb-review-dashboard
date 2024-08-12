@@ -31,7 +31,6 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > - 📋 Utilize sentiment analysis to classify each review's emotion
 > - 🚧 Add a button to allow user to classify sentiment of a listing's reviews
 > - 🚧 Display the sentiment in the review
-> - 🚧 Allow the user to flip the listing container around to show more information about the listing
 > - 🚧 Allow user to filter by sentiment
 > - 🚧 Add a bar graph showing sentiment counts
 > -
@@ -41,6 +40,11 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > - 🚧 Add button to summarize listing and display the listing summary
 >
 > - 🚧 Refactor ProcessHar view in views.py
+> - 🚧 Allow the user to flip the listing container around to show more information about the listing
+>
+> ### 8/11/24
+>
+> - ✅
 >
 > ### 8/10/24
 >
