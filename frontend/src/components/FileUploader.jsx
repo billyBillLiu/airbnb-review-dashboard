@@ -16,10 +16,6 @@ function FileUploader({ refreshReviews }) {
   };
 
   const handleUpload = async () => {
-    if (!file) {
-      alert("Please select a file to upload.");
-      return;
-    }
     setLoading(true);
     const formData = new FormData();
     formData.append("har-file", file);
