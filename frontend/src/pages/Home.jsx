@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api";
 import ListingColumn from "../components/ListingColumn";
 import FileUploader from "../components/FileUploader";
-import ConfirmationMenu from "../components/ConfirmationMenu";
+import ConfirmationMenu from "../components/reusable/ConfirmationMenu";
 import "../styles/Home.css";
 
 function Home() {

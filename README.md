@@ -25,26 +25,21 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > ### TODO (Long-term)
 
 > - 📋 Utilize Topic Modelling to group the reviews into topics
+> - 📋 Utilize LLMs to summarize each listing's reviews
 >
 > ### Tasks
 >
 > - 📋 Utilize sentiment analysis to classify each review's emotion
-> - 🚧 Add a button to allow user to classify sentiment of a listing's reviews
-> - 🚧 Display the sentiment in the review
 > - 🚧 Allow user to filter by sentiment
-> - 🚧 Add a bar graph showing sentiment counts
-> -
-> - 📋 Utilize LLMs to summarize each listing's reviews
-> - 🚧 Add a summary column to each listing
-> - 🚧 Add the backend api url and view to summarize listings
-> - 🚧 Add button to summarize listing and display the listing summary
+> - 🚧 Add a pie chart showing sentiment counts
 >
-> - 🚧 Refactor ProcessHar view in views.py
-> - 🚧 Allow the user to flip the listing container around to show more information about the listing
+> - 🚧 Refactor ProcessHar view in views.py [URGENTLY NEEDED]
 >
 > ### 8/11/24
 >
-> - ✅
+> - ✅ Remove backend URL and View to classify listing reviews and put everything into ProcessHAR to automate it instead
+> - ✅ Refactor the Listing Column and created a separate Listing.jsx component
+> - ✅ Display the sentiment in the review
 >
 > ### 8/10/24
 >

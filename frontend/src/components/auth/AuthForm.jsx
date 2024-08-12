@@ -3,7 +3,7 @@ import api from "../../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants";
 import "../../styles/AuthForm.css";
-import LoadingIndicator from "../assets/LoadingIndicator";
+import LoadingIndicator from "../reusable/LoadingIndicator";
 
 function AuthForm({ route, method }) {
   const [username, setUsername] = useState("");

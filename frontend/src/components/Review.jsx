@@ -42,7 +42,9 @@ function Review({ review, onDelete }) {
         {review.listing ? review.listing.name : "NO LISTING DETECTED"}
       </p>
       <p className="review-content">{review.comment}</p>
-      <p className="review-date">{formattedDate}</p>
+      <p className="review-date">
+        {formattedDate} {review.sentiment ? `[${review.sentiment}]` : ""}
+      </p>
       <button
         className={`delete-button ${isDropdownActive ? "active" : ""}`}
         onClick={() => deleteReview(review.id)}

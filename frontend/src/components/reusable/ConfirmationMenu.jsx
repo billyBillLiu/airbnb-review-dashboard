@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/ConfirmationMenu.css";
+import "../../styles/ConfirmationMenu.css";
 
 function ConfirmationMenu({ message, onConfirm, onCancel }) {
   return (
