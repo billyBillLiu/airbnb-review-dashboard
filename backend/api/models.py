@@ -14,12 +14,13 @@ class Listing(models.Model):
 
 class Review(models.Model):
     review_id = models.BigIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
     rating = models.IntegerField()
     comment = models.TextField()
     reviewer = models.CharField(max_length=50)
     listing = models.ForeignKey(Listing, null=True, on_delete=models.CASCADE)
     date = models.DateTimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
+    sentiment = models.CharField(max_length=20, null=True)
 
     def __str__(self):
         return f"Review from {self.reviewer} | {self.rating} Stars | {self.comment}"

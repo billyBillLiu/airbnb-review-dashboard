@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.utils.dateparse import parse_datetime
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import UserSerializer, ReviewSerializer, ListingSerializer
 from .models import Review, Listing
@@ -12,6 +11,11 @@ import json
 from haralyzer import HarParser
 import base64
 import re
+
+from transformers import pipeline
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+sentiment_classifier = pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", device=0, top_k=None)
 
 class CreateReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
@@ -58,7 +62,7 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
 
-
+# REFACTOR THIS
 class ProcessHarFile(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
@@ -149,6 +153,7 @@ class ProcessHarFile(APIView):
                     'reviewer': review_data['reviewer'],
                     'listing': listing,
                     'date': review_data['date'],
+                    'sentiment': None,
                 }
             )
         return JsonResponse({'count': len(extracted_review_data)})

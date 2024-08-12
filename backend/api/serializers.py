@@ -26,6 +26,6 @@ class ReviewSerializer(serializers.ModelSerializer):
     listing = ListingSerializer(read_only=True)
     class Meta:
         model = Review
-        fields = ["id", "review_id", "rating", "comment", "reviewer", "listing", "date", "user"]
+        fields = ["id", "review_id", "user", "rating", "comment", "reviewer", "listing", "date", "sentiment"]
         extra_kwargs = {"user": {"read_only": True}}
 

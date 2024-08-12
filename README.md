@@ -23,13 +23,14 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 - 🚧: _In Progress_
 
 > ### TODO (Long-term)
->
-> - 📋 Utilize Sentiment analysis to color code the reviews
+
+> - 📋 Utilize LLMs to summarize each listing's reviews
 > - 📋 Utilize Topic Modelling to group the reviews into topics
 >
 > ### Tasks
-
-> - 📋 Utilize LLMs to summarize each listing's reviews
+>
+> - 📋 Utilize sentiment analysis to classify each review's emotion
+> - 🚧 Refactor ProcessHar view in views.py
 >
 > ### 8/10/24
 >
