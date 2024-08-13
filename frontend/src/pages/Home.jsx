@@ -12,8 +12,40 @@ function Home() {
   const [groupedReviews, setGroupedReviews] = useState({});
   const [sortCriteria, setSortCriteria] = useState("newest");
   const [showConfirmation, setShowConfirmation] = useState(false); // State for showing confirmation
-
   const navigate = useNavigate();
+
+  const sentimentSortingMap = {
+    love: 28,
+    admiration: 27,
+    joy: 26,
+    approval: 25,
+    gratitude: 24,
+    excitement: 23,
+    optimism: 22,
+    caring: 21,
+    pride: 20,
+    relief: 19,
+    amusement: 18,
+
+    desire: 17,
+    curiosity: 16,
+    realization: 15,
+    surprise: 14,
+    neutral: 13,
+    confusion: 12,
+
+    nervousness: 11,
+    remorse: 10,
+    sadness: 9,
+    embarrassment: 8,
+    grief: 7,
+    fear: 6,
+    disapproval: 5,
+    disappointment: 4,
+    annoyance: 3,
+    disgust: 2,
+    anger: 1,
+  };
 
   useEffect(() => {
     getReviews();
@@ -63,6 +95,18 @@ function Home() {
     if (sortCriteria === "lowest") {
       sorted = [...reviews].sort((a, b) => a.rating - b.rating);
     }
+    if (sortCriteria === "best") {
+      sorted = [...reviews].sort(
+        (a, b) =>
+          sentimentSortingMap[b.sentiment] - sentimentSortingMap[a.sentiment]
+      );
+    }
+    if (sortCriteria === "worst") {
+      sorted = [...reviews].sort(
+        (a, b) =>
+          sentimentSortingMap[a.sentiment] - sentimentSortingMap[b.sentiment]
+      );
+    }
     return sorted;
   };
 
@@ -104,8 +148,10 @@ function Home() {
           <select onChange={handleSortChange} value={sortCriteria}>
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
-            <option value="highest">Highest Rating</option>
-            <option value="lowest">Lowest Rating</option>
+            <option value="highest">Rating ↑</option>
+            <option value="lowest">Rating ↓</option>
+            <option value="best">Sentiment ↑</option>
+            <option value="worst">Sentiment ↓</option>
           </select>
         </h1>
         <div className="header-buttons-div">
