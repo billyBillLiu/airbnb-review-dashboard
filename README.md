@@ -23,17 +23,19 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 - 🚧: _In Progress_
 
 > ### TODO (Long-term)
-
+>
+> - 📋 Utilize sentiment analysis to classify each review's emotion
 > - 📋 Utilize Topic Modelling to group the reviews into topics
 > - 📋 Utilize LLMs to summarize each listing's reviews
 >
 > ### Tasks
 >
-> - 📋 Utilize sentiment analysis to classify each review's emotion
-> - 🚧 Allow user to filter by sentiment
-> - 🚧 Add a pie chart showing sentiment counts
->
 > - 🚧 Refactor ProcessHar view in views.py [URGENTLY NEEDED]
+>
+> ### 8/12/24
+>
+> - 🚧 Allow user to filter and sort by sentiment
+> - 🚧 Add a pie chart showing sentiment counts
 >
 > ### 8/11/24
 >

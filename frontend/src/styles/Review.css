@@ -24,6 +24,16 @@
 
 .review-title p {
   margin: 0;
+  justify-content: center;
+}
+
+.star-icon {
+  height: 20px;
+  width: 20px;
+}
+
+.star-icon.blank {
+  filter: brightness(0.1);
 }
 
 .review-sentiment {
@@ -38,10 +48,10 @@
 }
 
 .review-sentiment.positive {
-  background-color: #002900;
+  background-color: #32a850;
 }
 .review-sentiment.negative {
-  background-color: #380000;
+  background-color: #dd3c42;
 }
 .review-sentiment.neutral {
   background-color: #222222;

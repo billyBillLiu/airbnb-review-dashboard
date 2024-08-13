@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import api from "../api";
 import delete_icon from "../assets/delete_icon.png";
+import star_icon from "../assets/star_icon.png";
 import "../styles/Review.css";
 
 function Review({ review, onDelete }) {
@@ -104,7 +105,14 @@ function Review({ review, onDelete }) {
       </div>
       <div className="review-title">
         <p>{review.reviewer} </p>
-        <p>{review.rating}&#11088;</p>
+        <p>
+          {Array.from({ length: review.rating }, (_, index) => (
+            <img key={index} className="star-icon" src={star_icon} />
+          ))}
+          {Array.from({ length: 5 - review.rating }, (_, index) => (
+            <img key={index} className="star-icon blank" src={star_icon} />
+          ))}
+        </p>
       </div>
       <p className="review-content">{review.comment}</p>
       <p className="review-date">{formattedDate}</p>
