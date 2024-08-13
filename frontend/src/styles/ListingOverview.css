@@ -14,28 +14,39 @@
 .overview-dialog {
   position: relative;
   background: #141414;
-  height: 650px;
+  height: 700px;
   width: 1000px;
   padding: 10px 30px;
   border-radius: 20px;
   box-shadow: 0 2px 10px rgb(0, 0, 0);
   font-weight: bold;
-  font-size: 1.5em;
+}
+
+.overview-title {
+  font-size: 1.7em;
   text-align: center;
+  margin: 20px 0 0 0;
 }
 .overview-close {
   position: absolute;
   top: 0;
   right: 0;
+  background-color: rgb(153, 1, 1);
+  border: none;
+  margin: 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-.overview-chart {
+.overview-pie-chart {
   position: relative;
-  margin: 30px;
-  width: 350px;
-  height: 350px;
+  margin: 30px 30px 0 30px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  border: 2px solid black;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   background: conic-gradient(
     #32a850 0% var(--positive),
     #222222 var(--positive) calc(var(--positive) + var(--neutral)),
@@ -43,16 +54,17 @@
   );
 }
 
-.chart-hole {
+.pie-chart-hole {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 50%;
   height: 50%;
   border-radius: 50%;
+  font-size: 1.4em;
   background: #141414;
   transform: translate(-50%, -50%);
-  border: 2px solid black;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .overview-percentages {
@@ -72,24 +84,80 @@
   margin-bottom: 5px;
 }
 
-.label {
+.percentage-label {
   font-weight: bold;
   margin-right: 10px;
 }
 
-.value {
+.percentage-value {
   font-weight: bold;
   text-align: right;
 }
 
-.value.positive {
+.percentage-value.positive {
   color: #32a850;
 }
 
-.value.neutral {
-  color: gray;
+.percentage-value.neutral {
+  color: rgb(160, 160, 160);
 }
 
-.value.negative {
+.percentage-value.negative {
   color: #dd3c42;
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  max-height: 250px;
+  margin: 30px 30px 30px 15px;
+  overflow-y: auto; /* always display scrollbar */
+  overflow-x: hidden; /* add this */
+  box-sizing: border-box;
+}
+
+.bar-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
+.bar-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.bar-label {
+  font-size: 0.7em;
+  font-weight: normal;
+  font-style: italic;
+  text-align: left;
+}
+
+.bar {
+  height: 7px;
+  border-radius: 10px;
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.bar-value {
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: right;
+  flex-basis: 30px;
+}
+
+.bar.positive {
+  background-color: #32a850;
+}
+.bar.neutral {
+  background-color: rgb(109, 109, 109);
+}
+.bar.negative {
+  background-color: #dd3c42;
 }

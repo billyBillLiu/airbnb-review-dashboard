@@ -3,7 +3,8 @@ import "../styles/ListingOverview.css";
 
 function ListingOverview({ listing, reviews, onClose }) {
   const [sentimentCount, setSentimentCount] = useState({});
-  const [percentages, setPercentages] = useState({
+  const [sentimentPercent, setSentimentPercent] = useState({});
+  const [colorPercent, setColorPercent] = useState({
     positive: 0,
     neutral: 0,
     negative: 0,
@@ -43,10 +44,14 @@ function ListingOverview({ listing, reviews, onClose }) {
   };
 
   useEffect(() => {
-    const count = countSentiments(reviews);
-    const percentages = calculatePercentages(count);
-    setSentimentCount(count);
-    setPercentages(percentages);
+    const sentimentCount = countSentiments(reviews);
+    setSentimentCount(sentimentCount);
+
+    const colorPercent = calculateColorPercent(sentimentCount);
+    setColorPercent(colorPercent);
+
+    const sentimentPercent = calculateSentimentPercent(sentimentCount);
+    setSentimentPercent(sentimentPercent);
   }, []);
 
   const countSentiments = (reviews) => {
@@ -60,7 +65,7 @@ function ListingOverview({ listing, reviews, onClose }) {
     }, {});
   };
 
-  const calculatePercentages = (sentimentCount) => {
+  const calculateColorPercent = (sentimentCount) => {
     const colorCount = { positive: 0, neutral: 0, negative: 0 };
     let total = 0;
     for (const sentiment in sentimentCount) {
@@ -68,54 +73,81 @@ function ListingOverview({ listing, reviews, onClose }) {
       colorCount[color] += sentimentCount[sentiment];
       total += sentimentCount[sentiment];
     }
-    const percentages = {
+    const colorPercentages = {
       positive: (colorCount.positive / total) * 100,
       neutral: (colorCount.neutral / total) * 100,
       negative: (colorCount.negative / total) * 100,
     };
+    return colorPercentages;
+  };
 
-    return percentages;
+  const calculateSentimentPercent = (sentimentCount) => {
+    const maxCount = Math.max(...Object.values(sentimentCount));
+    let sentimentPercentages = {};
+    for (const sentiment in sentimentCount) {
+      sentimentPercentages[sentiment] =
+        (sentimentCount[sentiment] / maxCount) * 100;
+    }
+    console.log(sentimentPercentages);
+    return sentimentPercentages;
   };
 
   return (
     <div className="overview-overlay">
       <div className="overview-dialog">
-        <p>
+        <div className="overview-title">
           {reviews.length} Reviews for {listing.name}:
-        </p>
+        </div>
         <div
-          className="overview-chart"
+          className="overview-pie-chart"
           style={{
-            "--positive": `${percentages.positive}%`,
-            "--neutral": `${percentages.neutral}%`,
-            "--negative": `${percentages.negative}%`,
+            "--positive": `${colorPercent.positive}%`,
+            "--neutral": `${colorPercent.neutral}%`,
+            "--negative": `${colorPercent.negative}%`,
           }}
         >
-          <div className="chart-hole">
+          <div className="pie-chart-hole">
             <div className="overview-percentages">
               <div className="percentage-row">
-                <span className="label">Positive:</span>
-                <span className="value positive">
-                  {Math.round(percentages.positive)}%
+                <span className="percentage-label">Positive:</span>
+                <span className="percentage-value positive">
+                  {Math.round(colorPercent.positive)}%
                 </span>
               </div>
               <div className="percentage-row">
-                <span className="label">Neutral:</span>
-                <span className="value neutral">
-                  {Math.round(percentages.neutral)}%
+                <span className="percentage-label">Neutral:</span>
+                <span className="percentage-value neutral">
+                  {Math.round(colorPercent.neutral)}%
                 </span>
               </div>
               <div className="percentage-row">
-                <span className="label">Negative:</span>
-                <span className="value negative">
-                  {Math.round(percentages.negative)}%
+                <span className="percentage-label">Negative:</span>
+                <span className="percentage-value negative">
+                  {Math.round(colorPercent.negative)}%
                 </span>
               </div>
             </div>
           </div>
         </div>
+        <div className="bar-chart">
+          {Object.keys(sentimentCount)
+            .sort((a, b) => sentimentCount[b] - sentimentCount[a])
+            .map((key, index) => (
+              <div className="bar-row">
+                <div className="bar-value">{sentimentCount[key]}</div>
+                <div className="bar-stack">
+                  <div
+                    key={index}
+                    className={`bar ${sentimentColorMap[key]}`}
+                    style={{ width: `${sentimentPercent[key]}%` }}
+                  />
+                  <div className="bar-label">{key}</div>
+                </div>
+              </div>
+            ))}
+        </div>
         <button className="overview-close" onClick={onClose}>
-          CLOSE
+          X
         </button>
       </div>
     </div>

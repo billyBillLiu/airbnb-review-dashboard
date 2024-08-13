@@ -30,12 +30,18 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### Tasks
 >
-> - 🚧 Refactor ProcessHar view in views.py [URGENTLY NEEDED]
+> - 🚧 Import LLM Model for summarization
+> - 🚧 Add Summarization functionality to backend
+> - 🚧 Display Summarization on Overview Component
+> - 🚧 Refactor ProcessHar view in views.py
+> - 🚧 Refactor ProcessHar components and maps (sentiment maps and ListingOverview)
+> - 🚧 Refactor CSS Styling Colors
 >
 > ### 8/12/24
 >
-> - 🚧 Allow user to filter and sort by sentiment
-> - 🚧 Add a pie chart showing sentiment counts
+> - ✅ Add a bar chart showing number of sentiments per
+> - ✅ Allow user sort by sentiment
+> - ✅ Add a pie chart showing sentiment counts
 >
 > ### 8/11/24
 >
