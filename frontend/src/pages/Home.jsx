@@ -150,8 +150,8 @@ function Home() {
             <option value="oldest">Oldest</option>
             <option value="highest">Rating ↑</option>
             <option value="lowest">Rating ↓</option>
-            <option value="best">Sentiment ↑</option>
-            <option value="worst">Sentiment ↓</option>
+            <option value="best">Emotion ↑</option>
+            <option value="worst">Emotion ↓</option>
           </select>
         </h1>
         <div className="header-buttons-div">
@@ -179,7 +179,7 @@ function Home() {
       </div>
       {showConfirmation && (
         <ConfirmationMenu
-          message="Are you sure you want to clear all data? This action cannot be undone."
+          message="Are you sure you want to DELETE all data? This CANNOT be undone."
           onConfirm={deleteAllReviews}
           onCancel={() => setShowConfirmation(false)}
         />

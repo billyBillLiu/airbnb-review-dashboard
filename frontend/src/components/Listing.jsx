@@ -1,15 +1,16 @@
 import { React, useState } from "react";
 import api from "../api";
-import LoadingIndicator from "./reusable/LoadingIndicator";
+import ListingOverview from "./ListingOverview";
 import save_icon from "../assets/save_icon.png";
 import edit_icon from "../assets/edit_icon.png";
 import info_icon from "../assets/info_icon.png";
 import "../styles/Listing.css";
 
-function Listing({ listing, length, refreshReviews }) {
+function Listing({ listing, reviews, refreshReviews }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(listing ? listing.name : "");
   const [isDropdownActive, setIsDropdownActive] = useState(false);
+  const [showOverview, setShowOverview] = useState(false);
 
   const handleUpdateListing = (id, name) => {
     api
@@ -44,74 +45,92 @@ function Listing({ listing, length, refreshReviews }) {
     }
   };
 
-  return (
-    <div
-      className="dropdown"
-      onMouseEnter={() => setIsDropdownActive(true)} // Show dropdown on hover
-      onMouseLeave={() => setIsDropdownActive(false)} // Hide dropdown when not hovering
-    >
-      <form onSubmit={handleSaveButtonClick}>
-        <div
-          className="listing-container"
-          style={{
-            backgroundImage: listing ? `url(${listing.image})` : "none",
-          }}
-        >
-          <div className="listing-name">
-            {isEditing ? (
-              <input
-                type="text"
-                value={newName}
-                onChange={handleNameChange}
-                onBlur={handleBlur}
-                autoFocus
-              />
-            ) : (
-              <div>
-                {listing ? (
-                  <a
-                    href={`https://www.airbnb.com/rooms/${listing.listing_id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <b>{listing.name}</b>
-                    <i> ({length})</i>
-                  </a>
-                ) : (
-                  <p>
-                    <b>NO LISTING DETECTED</b>
-                    <i> ({length})</i>
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-        {listing && (
-          <div className={`dropdown-menu ${isDropdownActive ? "active" : ""}`}>
-            <button className="dropdown-button info">
-              <img
-                className="button-icon"
-                src={info_icon}
-                alt="Classify Sentiments"
-              />
-            </button>
+  const hideOverview = () => {
+    setShowOverview(false);
+  };
 
-            {isEditing ? (
-              <button className="dropdown-button save" type="submit">
-                <img className="button-icon" src={save_icon} alt="Save" />
-              </button>
-            ) : (
-              <button
-                className="dropdown-button"
-                onClick={handleEditButtonClick}
-              >
-                <img className="button-icon" src={edit_icon} alt="Edit" />
-              </button>
-            )}
+  return (
+    <div>
+      <div
+        className="dropdown"
+        onMouseEnter={() => setIsDropdownActive(true)} // Show dropdown on hover
+        onMouseLeave={() => setIsDropdownActive(false)} // Hide dropdown when not hovering
+      >
+        <form onSubmit={handleSaveButtonClick}>
+          <div
+            className="listing-container"
+            style={{
+              backgroundImage: listing ? `url(${listing.image})` : "none",
+            }}
+          >
+            <div className="listing-name">
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={newName}
+                  onChange={handleNameChange}
+                  onBlur={handleBlur}
+                  autoFocus
+                />
+              ) : (
+                <div>
+                  {listing ? (
+                    <a
+                      href={`https://www.airbnb.com/rooms/${listing.listing_id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <b>{listing.name}</b>
+                      <i> ({reviews.length})</i>
+                    </a>
+                  ) : (
+                    <p>
+                      <b>NO LISTING DETECTED</b>
+                      <i> ({reviews.length})</i>
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
-        )}
-      </form>
+          {listing && (
+            <div
+              className={`dropdown-menu ${isDropdownActive ? "active" : ""}`}
+            >
+              <button
+                className="dropdown-button info"
+                onClick={() => setShowOverview(true)}
+              >
+                <img
+                  className="button-icon"
+                  src={info_icon}
+                  alt="Show Overview"
+                />
+              </button>
+
+              {isEditing ? (
+                <button className="dropdown-button save" type="submit">
+                  <img className="button-icon" src={save_icon} alt="Save" />
+                </button>
+              ) : (
+                <button
+                  className="dropdown-button"
+                  onClick={handleEditButtonClick}
+                >
+                  <img className="button-icon" src={edit_icon} alt="Edit" />
+                </button>
+              )}
+            </div>
+          )}
+        </form>
+      </div>
+      {showOverview && (
+        <ListingOverview
+          listing={listing}
+          reviews={reviews}
+          onClose={hideOverview}
+        />
+      )}
     </div>
   );
 }

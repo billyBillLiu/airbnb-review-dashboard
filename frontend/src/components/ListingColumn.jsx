@@ -8,7 +8,7 @@ function ListingColumn({ reviews, onDelete, refreshReviews }) {
     <div className="listing-column">
       <Listing
         listing={listing}
-        length={reviews.length}
+        reviews={reviews}
         refreshReviews={refreshReviews}
       />
       <div className="reviews-container">
