@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import api from "../api";
 import save_icon from "../assets/save_icon.png";
 import edit_icon from "../assets/edit_icon.png";
-import info_icon from "../assets/info_icon.png";
+import pie_icon from "../assets/pie_icon.png";
 import "../styles/Listing.css";
 
 function Listing({ listing, onShowOverview, refreshReviews }) {
@@ -92,7 +92,7 @@ function Listing({ listing, onShowOverview, refreshReviews }) {
               <button className="dropdown-button info" onClick={onShowOverview}>
                 <img
                   className="button-icon"
-                  src={info_icon}
+                  src={pie_icon}
                   alt="Show Overview"
                 />
               </button>

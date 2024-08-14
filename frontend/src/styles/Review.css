@@ -2,7 +2,7 @@
   padding: 20px;
   border: none; /* Remove the border */
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 30px;
   background-color: #313131; /* Darker gray for review containers */
   height: auto; /* Increase the height for a larger square */
   width: 300px;
@@ -42,7 +42,7 @@
   font-weight: bold;
   margin: 0;
   margin: -20px -20px 20px -20px; /* Add this line */
-  border-radius: 10px 10px 0 0;
+  border-radius: 30px 30px 0 0;
   padding: 10px;
   text-align: center;
 }
@@ -72,14 +72,14 @@
 .delete-button {
   position: absolute; /* Stay within the container */
   bottom: 0; /* Position at the bottom of the container */
-  right: 10px; /* Center horizontally */
-  background-color: rgb(153, 1, 1);
+  right: 20px; /* Center horizontally */
+  background-color: rgba(255, 76, 76, 0.5);
   width: 40px;
   height: 40px;
   color: white;
   border: 2px solid #202020;
   margin: auto;
-  border-radius: 20px;
+  border-radius: 50%;
   cursor: pointer;
   opacity: 0;
   transform: translateY(20%);

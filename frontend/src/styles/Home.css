@@ -28,15 +28,25 @@ body {
   flex-direction: row;
 }
 
-.header-section select {
+.sort-selector {
   margin: 10px;
   height: 40px;
   font-size: 1em;
-  background-color: #252525;
+  background-color: #202020;
   color: white;
   font-weight: bold;
-  border-radius: 20px;
-  padding: 0 10px;
+  border-radius: 10px;
+  padding: 0 0 0 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.sort-selector option {
+  font-weight: none;
+}
+
+.sort-selector option:checked {
+  font-weight: bold;
 }
 
 .header-buttons-div {

@@ -6,11 +6,11 @@
   display: flex;
   background-color: #202020;
   border: 3px solid #202020;
-  border-radius: 10px;
+  border-radius: 40px;
   width: 350px;
   height: 175px;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 20px;
   justify-content: space-between;
   background-size: cover; /* Ensures the image covers the container */
   background-position: center; /* Center the image within the container */
@@ -21,13 +21,9 @@
 
 .listing-name {
   margin: auto;
-  border-radius: 10px;
+  border-radius: 15px;
   text-align: center;
   color: white;
-}
-
-.listing-name:hover {
-  background-color: #20202036;
 }
 
 .listing-name a {
@@ -54,34 +50,30 @@
 
 .dropdown-menu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: absolute;
-  background-color: #202020;
-  gap: 5px;
-  top: 50%;
-  left: 100%; /* Position the dropdown to the right of the listing container */
-  transform: translateY(-50%) translateX(-5px); /* Offset by 50% of its height to achieve vertical centering */
-  border-radius: 0 10px 10px 0; /* Optional: Add rounded corners */
-  padding: 10px; /* Optional: Add padding */
-  z-index: 1; /* Ensure the dropdown is on top of other elements */
+  background-color: transparent;
+  gap: 225px;
+  top: 25%;
+  left: 50%; /* Position the dropdown to the right of the listing container */
+  transform: translateY(-65%) translateX(-50%);
+  z-index: 1;
   opacity: 0;
   transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
 }
 
 .dropdown-menu.active {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
 }
 
 .dropdown-button {
+  height: 50px;
+  width: 50px;
   cursor: pointer;
-  padding: 5px;
   text-align: center;
-  padding: auto;
   background-color: #555555;
-  color: white;
-  border-radius: 10px; /* Optional: Add rounded corners */
-  flex: 1;
+  border: 3px solid #202020;
+  border-radius: 50%;
 }
 
 .dropdown-button.save {
@@ -89,10 +81,11 @@
 }
 
 .dropdown-button.info {
-  background-color: rgb(57, 96, 105);
+  background-color: rgb(51, 168, 189);
 }
 
 .button-icon {
-  height: 30px;
-  width: 30px;
+  margin: auto;
+  height: 25px;
+  width: 25px;
 }

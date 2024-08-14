@@ -145,7 +145,11 @@ function Home() {
         <h1>
           {allReviews.length} Reviews from {Object.keys(groupedReviews).length}{" "}
           Listings Sorted by:
-          <select onChange={handleSortChange} value={sortCriteria}>
+          <select
+            className="sort-selector"
+            onChange={handleSortChange}
+            value={sortCriteria}
+          >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
             <option value="highest">Rating ↑</option>
