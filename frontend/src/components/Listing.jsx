@@ -1,16 +1,14 @@
 import { React, useState } from "react";
 import api from "../api";
-import ListingOverview from "./ListingOverview";
 import save_icon from "../assets/save_icon.png";
 import edit_icon from "../assets/edit_icon.png";
 import info_icon from "../assets/info_icon.png";
 import "../styles/Listing.css";
 
-function Listing({ listing, reviews, refreshReviews }) {
+function Listing({ listing, onShowOverview, refreshReviews }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(listing ? listing.name : "");
   const [isDropdownActive, setIsDropdownActive] = useState(false);
-  const [showOverview, setShowOverview] = useState(false);
 
   const handleUpdateListing = (id, name) => {
     api
@@ -45,10 +43,6 @@ function Listing({ listing, reviews, refreshReviews }) {
     }
   };
 
-  const hideOverview = () => {
-    setShowOverview(false);
-  };
-
   return (
     <div>
       <div
@@ -81,12 +75,10 @@ function Listing({ listing, reviews, refreshReviews }) {
                       rel="noopener noreferrer"
                     >
                       <b>{listing.name}</b>
-                      <i> ({reviews.length})</i>
                     </a>
                   ) : (
                     <p>
                       <b>NO LISTING DETECTED</b>
-                      <i> ({reviews.length})</i>
                     </p>
                   )}
                 </div>
@@ -97,10 +89,7 @@ function Listing({ listing, reviews, refreshReviews }) {
             <div
               className={`dropdown-menu ${isDropdownActive ? "active" : ""}`}
             >
-              <button
-                className="dropdown-button info"
-                onClick={() => setShowOverview(true)}
-              >
+              <button className="dropdown-button info" onClick={onShowOverview}>
                 <img
                   className="button-icon"
                   src={info_icon}
@@ -124,13 +113,6 @@ function Listing({ listing, reviews, refreshReviews }) {
           )}
         </form>
       </div>
-      {showOverview && (
-        <ListingOverview
-          listing={listing}
-          reviews={reviews}
-          onClose={hideOverview}
-        />
-      )}
     </div>
   );
 }
