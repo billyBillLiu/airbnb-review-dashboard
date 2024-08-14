@@ -111,7 +111,7 @@
   flex-direction: column;
   width: 300px;
   max-height: 250px;
-  padding: 2 px;
+  padding: 2px;
   margin: 30px 30px 30px 15px;
   overflow-y: auto; /* always display scrollbar */
   overflow-x: hidden; /* add this */
