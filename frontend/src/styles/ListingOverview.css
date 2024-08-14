@@ -111,6 +111,7 @@
   flex-direction: column;
   width: 300px;
   max-height: 250px;
+  padding: 2 px;
   margin: 30px 30px 30px 15px;
   overflow-y: auto; /* always display scrollbar */
   overflow-x: hidden; /* add this */
@@ -132,21 +133,21 @@
 }
 
 .bar-label {
-  font-size: 0.7em;
+  font-size: 0.9em;
   font-weight: normal;
   font-style: italic;
   text-align: left;
 }
 
 .bar {
-  height: 7px;
+  height: 8px;
   border-radius: 10px;
   display: flex;
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .bar-value {
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: bold;
   text-align: right;
   flex-basis: 30px;
