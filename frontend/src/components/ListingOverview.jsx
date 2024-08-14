@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import x_icon from "../assets/x_icon.png";
 import "../styles/ListingOverview.css";
 
 function ListingOverview({ listing, reviews, onClose }) {
@@ -95,60 +96,59 @@ function ListingOverview({ listing, reviews, onClose }) {
   return (
     <div className="overview-overlay">
       <div className="overview-dialog">
-        <div className="overview-title">
-          {reviews.length} Reviews for {listing.name}:
-        </div>
-        <div
-          className="overview-pie-chart"
-          style={{
-            "--positive": `${colorPercent.positive}%`,
-            "--neutral": `${colorPercent.neutral}%`,
-            "--negative": `${colorPercent.negative}%`,
-          }}
-        >
-          <div className="pie-chart-hole">
-            <div className="overview-percentages">
-              <div className="percentage-row">
-                <span className="percentage-label">Positive:</span>
-                <span className="percentage-value positive">
-                  {Math.round(colorPercent.positive)}%
-                </span>
-              </div>
-              <div className="percentage-row">
-                <span className="percentage-label">Neutral:</span>
-                <span className="percentage-value neutral">
-                  {Math.round(colorPercent.neutral)}%
-                </span>
-              </div>
-              <div className="percentage-row">
-                <span className="percentage-label">Negative:</span>
-                <span className="percentage-value negative">
-                  {Math.round(colorPercent.negative)}%
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bar-chart">
-          {Object.keys(sentimentCount)
-            .sort((a, b) => sentimentCount[b] - sentimentCount[a])
-            .map((key, index) => (
-              <div className="bar-row">
-                <div className="bar-value">{sentimentCount[key]}</div>
-                <div className="bar-stack">
-                  <div
-                    key={index}
-                    className={`bar ${sentimentColorMap[key]}`}
-                    style={{ width: `${sentimentPercent[key]}%` }}
-                  />
-                  <div className="bar-label">{key}</div>
+        <div className="overview-title">{listing.name}</div>
+        <button className="overview-close" onClick={onClose}>
+          <img className="close-icon" src={x_icon} />
+        </button>
+        <div className="overview-content">
+          <div className="overview-charts">
+            <div
+              className="pie-chart"
+              style={{
+                "--positive": `${colorPercent.positive}%`,
+                "--neutral": `${colorPercent.neutral}%`,
+                "--negative": `${colorPercent.negative}%`,
+              }}
+            >
+              <div className="pie-chart-hole">
+                <div className="review-count">{reviews.length}</div>
+                <div className="percentages">
+                  <span className="percentage-value positive">
+                    {Math.round(colorPercent.positive)}%
+                  </span>
+                  |
+                  <span className="percentage-value neutral">
+                    {Math.round(colorPercent.neutral)}%
+                  </span>
+                  |
+                  <span className="percentage-value negative">
+                    {Math.round(colorPercent.negative)}%
+                  </span>
                 </div>
               </div>
-            ))}
+            </div>
+            <div className="bar-chart">
+              {Object.keys(sentimentCount)
+                .sort((a, b) => sentimentCount[b] - sentimentCount[a])
+                .map((key, index) => (
+                  <div className="bar-row">
+                    <div className="bar-count">{sentimentCount[key]}</div>
+                    <div className="bar-stack">
+                      <div
+                        key={index}
+                        className={`bar ${sentimentColorMap[key]}`}
+                        style={{ width: `${sentimentPercent[key]}%` }}
+                      />
+                      <div className="bar-label">{key}</div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+          <div className="overview-summary">
+            <div className="summary-title">What People Are Saying:</div>
+          </div>
         </div>
-        <button className="overview-close" onClick={onClose}>
-          X
-        </button>
       </div>
     </div>
   );

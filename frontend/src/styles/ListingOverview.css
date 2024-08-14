@@ -1,11 +1,11 @@
 .overview-overlay {
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
@@ -15,9 +15,9 @@
   position: relative;
   background: #141414;
   height: 700px;
-  width: 1000px;
+  width: 700px;
   padding: 10px 30px;
-  border-radius: 20px;
+  border-radius: 40px;
   box-shadow: 0 2px 10px rgb(0, 0, 0);
   font-weight: bold;
 }
@@ -31,22 +31,38 @@
   position: absolute;
   top: 0;
   right: 0;
-  background-color: rgb(153, 1, 1);
-  border: none;
+  transform: translateY(-50%) translateX(50%);
+  background-color: rgba(240, 57, 57, 0.5);
+  border: 3px solid #202020;
   margin: 10px;
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.overview-pie-chart {
+.overview-close:hover {
+  background-color: #dd3c42;
+}
+
+.close-icon {
+  height: 30px;
+  width: 30px;
+  margin: auto;
+}
+
+.overview-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.pie-chart {
   position: relative;
   margin: 30px 30px 0 30px;
-  width: 300px;
-  height: 300px;
+  width: 275px;
+  height: 275px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.75);
   background: conic-gradient(
     #32a850 0% var(--positive),
     #222222 var(--positive) calc(var(--positive) + var(--neutral)),
@@ -64,24 +80,23 @@
   font-size: 1.4em;
   background: #141414;
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.overview-percentages {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  font-size: 0.7em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  align-items: center;
+  box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.75);
 }
 
-.percentage-row {
+.review-count {
+  font-size: 2.3em;
+  color: white;
+  margin-top: 27px;
+}
+.percentages {
+  font-size: 0.6em;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  gap: 5px;
+  margin: -5px auto;
 }
 
 .percentage-label {
@@ -91,7 +106,6 @@
 
 .percentage-value {
   font-weight: bold;
-  text-align: right;
 }
 
 .percentage-value.positive {
@@ -99,7 +113,7 @@
 }
 
 .percentage-value.neutral {
-  color: rgb(160, 160, 160);
+  color: rgb(148, 148, 148);
 }
 
 .percentage-value.negative {
@@ -109,10 +123,10 @@
 .bar-chart {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  max-height: 250px;
+  width: 275px;
+  height: 275px;
   padding: 2px;
-  margin: 30px 30px 30px 15px;
+  margin: 20px 0 15px 15px;
   overflow-y: auto; /* always display scrollbar */
   overflow-x: hidden; /* add this */
   box-sizing: border-box;
@@ -143,11 +157,12 @@
   height: 8px;
   border-radius: 10px;
   display: flex;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  box-shadow: 0 1px 5px 0 rgba(255, 255, 255, 0.75);
 }
 
-.bar-value {
-  font-size: 1em;
+.bar-count {
+  font-size: 1.1em;
   font-weight: bold;
   text-align: right;
   flex-basis: 30px;
@@ -161,4 +176,23 @@
 }
 .bar.negative {
   background-color: #dd3c42;
+}
+
+.overview-summary {
+  height: 500px;
+  width: 350px;
+  border-radius: 40px;
+  margin: auto;
+  background-color: #333333;
+  box-shadow: #141414;
+  box-shadow: inset 0 0 20px 0 rgb(0, 0, 0, 0.75);
+}
+
+.summary-title {
+  height: 50px;
+  background-color: rgb(51, 168, 189);
+  border-radius: 40px 40px 0 0;
+  text-align: center;
+  align-content: center;
+  font-size: 1.3em;
 }
