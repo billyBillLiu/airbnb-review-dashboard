@@ -43,7 +43,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### 8/13/24
 >
-> - ✅ Updated UI and Styling
+> - ✅ Updated UI and Styling for overview
 > - ✅ Added summary box to overview
 >
 > ### 8/12/24
