@@ -146,7 +146,27 @@ function ListingOverview({ listing, reviews, onClose }) {
             </div>
           </div>
           <div className="overview-summary">
-            <div className="summary-title">What People Are Saying:</div>
+            <div className="summary-section">
+              <div className="summary-title good">Strengths:</div>
+              <div className="summary-text"> YPPPP</div>
+            </div>
+            <div className="summary-section">
+              <div className="summary-title bad">Weaknesses:</div>
+              <div className="summary-text">
+                {" "}
+                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
+                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY{" "}
+                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
+                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
+                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
+                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
+                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
+                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
+                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
+                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
+                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY{" "}
+              </div>
+            </div>
           </div>
         </div>
       </div>

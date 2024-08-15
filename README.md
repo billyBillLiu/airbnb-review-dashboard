@@ -39,7 +39,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### 8/14/24
 >
-> - ✅
+> - ✅ Restyle header and add an info icon
 >
 > ### 8/13/24
 >

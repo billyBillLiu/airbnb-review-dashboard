@@ -91,7 +91,11 @@ function Listing({ listing, onShowOverview, refreshReviews }) {
                 isDropdownActive ? "active" : ""
               }`}
             >
-              <button className="listing-button info" onClick={onShowOverview}>
+              <button
+                className="listing-button info"
+                type="button"
+                onClick={onShowOverview}
+              >
                 <img
                   className="button-icon"
                   src={pie_icon}

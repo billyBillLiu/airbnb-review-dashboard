@@ -126,7 +126,7 @@
   width: 275px;
   height: 275px;
   padding: 2px;
-  margin: 20px 0 15px 15px;
+  margin: 30px 0 15px 15px;
   overflow-y: auto; /* always display scrollbar */
   overflow-x: hidden; /* add this */
   box-sizing: border-box;
@@ -179,13 +179,19 @@
 }
 
 .overview-summary {
-  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-section {
+  height: 275px;
   width: 350px;
   border-radius: 40px;
-  margin: auto;
+  margin: 30px 30px 0 0;
   background-color: #333333;
   box-shadow: #141414;
   box-shadow: inset 0 0 20px 0 rgb(0, 0, 0, 0.75);
+  overflow: hidden;
 }
 
 .summary-title {
@@ -195,4 +201,21 @@
   text-align: center;
   align-content: center;
   font-size: 1.3em;
+}
+
+.summary-title.good {
+  background-color: rgb(51, 168, 189);
+}
+
+.summary-title.bad {
+  background-color: #dda53c;
+}
+
+.summary-text {
+  height: 225px;
+  text-align: center;
+  padding: 25px;
+  font-weight: normal;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
