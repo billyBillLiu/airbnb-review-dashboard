@@ -4,6 +4,12 @@ import api from "../api";
 import ListingColumn from "../components/ListingColumn";
 import FileUploader from "../components/FileUploader";
 import ConfirmationMenu from "../components/reusable/ConfirmationMenu";
+import LoadingIndicator from "../components/reusable/LoadingIndicator";
+import info_icon from "../assets/info_icon.png";
+import delete_all_icon from "../assets/delete_all_icon.png";
+import logout_icon from "../assets/logout_icon.png";
+import menu_icon from "../assets/menu_icon.png";
+import up_icon from "../assets/up_icon.png";
 import "../styles/Home.css";
 
 function Home() {
@@ -11,7 +17,9 @@ function Home() {
   const [sortedReviews, setSortedReviews] = useState([]);
   const [groupedReviews, setGroupedReviews] = useState({});
   const [sortCriteria, setSortCriteria] = useState("newest");
-  const [showConfirmation, setShowConfirmation] = useState(false); // State for showing confirmation
+  const [showHeaderMenu, setShowHeaderMenu] = useState(false);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // State for showing confirmation
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const sentimentSortingMap = {
@@ -60,6 +68,7 @@ function Home() {
   }, [sortedReviews]);
 
   const getReviews = () => {
+    setLoading(true);
     api
       .get("/api/reviews/")
       .then((res) => res.data)
@@ -67,11 +76,12 @@ function Home() {
         setAllReviews(data);
         console.log(data);
       })
-      .catch((err) => alert(`Error While Getting Reviews: \n${err}`));
+      .catch((err) => alert(`Error While Getting Reviews: \n${err}`))
+      .finally(() => setLoading(false));
   };
 
   const deleteAllReviews = () => {
-    setShowConfirmation(false);
+    setShowDeleteConfirmation(false);
     api
       .delete("/api/reviews/delete-all/")
       .then((res) => {
@@ -142,33 +152,54 @@ function Home() {
   return (
     <div className="container">
       <div className="header-section">
-        <h1>
-          {allReviews.length} Reviews from {Object.keys(groupedReviews).length}{" "}
-          Listings Sorted by:
-          <select
-            className="sort-selector"
-            onChange={handleSortChange}
-            value={sortCriteria}
+        {loading ? (
+          <div
+            className="header-title"
+            style={{ display: "flex", alignItems: "center" }}
           >
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-            <option value="highest">Rating ↑</option>
-            <option value="lowest">Rating ↓</option>
-            <option value="best">Emotion ↑</option>
-            <option value="worst">Emotion ↓</option>
-          </select>
-        </h1>
-        <div className="header-buttons-div">
-          <button
-            className="delete-all-button"
-            onClick={() => setShowConfirmation(true)}
-          >
-            CLEAR ALL DATA
-          </button>
-          <button className="logout-button" onClick={handleLogout}>
-            Log Out
-          </button>
-        </div>
+            Loading Reviews...
+            <LoadingIndicator />
+          </div>
+        ) : (
+          <div className="header-title">
+            <b>{allReviews.length} Reviews</b> from{" "}
+            <b>{Object.keys(groupedReviews).length} Listings</b> Sorted by:
+            <select
+              className="sort-selector"
+              onChange={handleSortChange}
+              value={sortCriteria}
+            >
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="highest">Rating ↑</option>
+              <option value="lowest">Rating ↓</option>
+              <option value="best">Emotion ↑</option>
+              <option value="worst">Emotion ↓</option>
+            </select>
+          </div>
+        )}
+
+        <img
+          className="menu-button"
+          src={menu_icon}
+          onClick={() => setShowHeaderMenu(true)}
+        />
+        {showHeaderMenu && (
+          <div className={`header-menu ${showHeaderMenu ? "active" : ""}`}>
+            <img
+              src={up_icon}
+              onClick={() => {
+                setShowHeaderMenu(false);
+              }}
+            />
+            <img src={info_icon} />
+            <img
+              src={delete_all_icon}
+              onClick={() => setShowDeleteConfirmation(true)}
+            />
+            <img src={logout_icon} onClick={handleLogout} />
+          </div>
+        )}
       </div>
       <div className="reviews-section">
         {Object.values(groupedReviews).map((reviews) => (
@@ -181,11 +212,11 @@ function Home() {
         ))}
         <FileUploader refreshReviews={getReviews} />
       </div>
-      {showConfirmation && (
+      {showDeleteConfirmation && (
         <ConfirmationMenu
           message="Are you sure you want to DELETE all data? This CANNOT be undone."
           onConfirm={deleteAllReviews}
-          onCancel={() => setShowConfirmation(false)}
+          onCancel={() => setShowDeleteConfirmation(false)}
         />
       )}
     </div>

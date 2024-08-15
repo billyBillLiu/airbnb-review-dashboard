@@ -1,4 +1,4 @@
-.dropdown {
+.listing-overlay {
   position: relative;
 }
 
@@ -48,7 +48,7 @@
   font-size: 20px; /* Adjust the size as needed */
 }
 
-.dropdown-menu {
+.listing-button-menu {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -59,14 +59,14 @@
   transform: translateY(-65%) translateX(-50%);
   z-index: 1;
   opacity: 0;
-  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  transition: opacity 150ms ease-in-out;
 }
 
-.dropdown-menu.active {
+.listing-button-menu.active {
   opacity: 1;
 }
 
-.dropdown-button {
+.listing-button {
   height: 50px;
   width: 50px;
   cursor: pointer;
@@ -76,11 +76,11 @@
   border-radius: 50%;
 }
 
-.dropdown-button.save {
+.listing-button.save {
   background-color: rgb(0, 119, 0);
 }
 
-.dropdown-button.info {
+.listing-button.info {
   background-color: rgb(51, 168, 189);
 }
 

@@ -46,7 +46,7 @@ function Listing({ listing, onShowOverview, refreshReviews }) {
   return (
     <div>
       <div
-        className="dropdown"
+        className="listing-overlay"
         onMouseEnter={() => setIsDropdownActive(true)} // Show dropdown on hover
         onMouseLeave={() => setIsDropdownActive(false)} // Hide dropdown when not hovering
       >
@@ -87,9 +87,11 @@ function Listing({ listing, onShowOverview, refreshReviews }) {
           </div>
           {listing && (
             <div
-              className={`dropdown-menu ${isDropdownActive ? "active" : ""}`}
+              className={`listing-button-menu ${
+                isDropdownActive ? "active" : ""
+              }`}
             >
-              <button className="dropdown-button info" onClick={onShowOverview}>
+              <button className="listing-button info" onClick={onShowOverview}>
                 <img
                   className="button-icon"
                   src={pie_icon}
@@ -98,12 +100,12 @@ function Listing({ listing, onShowOverview, refreshReviews }) {
               </button>
 
               {isEditing ? (
-                <button className="dropdown-button save" type="submit">
+                <button className="listing-button save" type="submit">
                   <img className="button-icon" src={save_icon} alt="Save" />
                 </button>
               ) : (
                 <button
-                  className="dropdown-button"
+                  className="listing-button"
                   onClick={handleEditButtonClick}
                 >
                   <img className="button-icon" src={edit_icon} alt="Edit" />

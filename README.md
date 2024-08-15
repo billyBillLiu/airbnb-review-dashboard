@@ -37,6 +37,10 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > - 🚧 Refactor ProcessHar components and maps (sentiment maps and ListingOverview)
 > - 🚧 Refactor CSS Styling Colors
 >
+> ### 8/14/24
+>
+> - ✅
+>
 > ### 8/13/24
 >
 > - ✅ Updated UI and Styling
