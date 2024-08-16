@@ -8,6 +8,9 @@ class Listing(models.Model):
     name = models.CharField(max_length=51)
     image = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
+    # strengths = models.TextField()
+    # weaknesses = models.TextField()
+    # generation_up_to_date = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
