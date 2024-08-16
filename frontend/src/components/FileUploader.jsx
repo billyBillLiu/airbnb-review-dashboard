@@ -29,7 +29,11 @@ function FileUploader({ refreshReviews }) {
       .catch((err) => {
         alert(`Error While Processing File: \n${err}`);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        setFile(null);
+        setFileName(null);
+      });
   };
 
   const clearFile = () => {

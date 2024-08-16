@@ -69,36 +69,48 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
 
-# REFACTOR THIS
 class ProcessHarFile(APIView):
     permission_classes = [IsAuthenticated]
+
     def post(self, request, *args, **kwargs):
+        current_user = request.user
+        filtered_entries = self.filter_entries(request)
+        decoded_json = self.decode_json(filtered_entries)
+        extracted_review_data = self.extract_review_data(decoded_json)
+        self.save_review_data(current_user, extracted_review_data)
+        self.classify_review_sentiment(current_user)
+        return JsonResponse({'count': len(extracted_review_data)})
+
+    def filter_entries(self, request):
         har_file = request.FILES['har-file'].read().decode('utf-8')
         har_data = json.loads(har_file)
-
         har_parser = HarParser(har_data)
+        entries = har_parser.har_data['entries']
 
         filtered_entries = []
-        entries = har_parser.har_data['entries']
         for entry in entries:
             if 'https://www.airbnb.com/api/v3/GetUserProfileReviews' in entry['request']['url']:
                 filtered_entries.append(entry['response']['content']['text'])
 
-        def is_base64(s):
+        return filtered_entries
+    
+    def is_base64(self, s):
             s = re.sub(r'[^A-Za-z0-9+/=]', '', s)
             return base64.b64encode(base64.b64decode(s)).decode('utf-8') == s
-
+    
+    def decode_json(self, filtered_entries):
         decoded_json = []
         for entry in filtered_entries:
-            if is_base64(entry):
+            if self.is_base64(entry):
                 decoded_bytes = base64.b64decode(entry)
                 decoded_str = decoded_bytes.decode('utf-8')
                 json_data = json.loads(decoded_str)
             else:
                 json_data = json.loads(entry)
             decoded_json.append(json_data)
-
-        # Extract data from json into a key value list
+        return decoded_json
+    
+    def extract_review_data(self, decoded_json):
         extracted_review_data = []
         for key in decoded_json:
             reviews = key['data']['presentation']['userProfileContainer']['userProfileReviews']['reviews']
@@ -129,46 +141,55 @@ class ProcessHarFile(APIView):
                     'listing_image': listing_image,
                     'date': date
                 })
-
-        # Save extracted data to database
-        current_user = request.user
-        listings_changed = []
-        for review_data in extracted_review_data:
-            # Some Airbnb reviews do not have a listing attached to it
-            if review_data['listing_id'] == None:
-                listing = None 
-            else:
-                # Gets existing listing or creates a new one if it exists
-                listing_id = review_data['listing_id']
-                listing_name = review_data['listing_name']
-                listing_image = review_data['listing_image']
-                listing, _ = Listing.objects.get_or_create(
-                    listing_id = listing_id,
-                    user = current_user,
-                    defaults={
-                        'name': listing_name,
-                        'image': listing_image,
-                    }
-                )
-                listings_changed.append(listing)
-                
-            Review.objects.update_or_create(
-                review_id=review_data['review_id'],
-                user=current_user,
+        return extracted_review_data
+    
+    def find_or_create_review_listing(self, current_user, review_data):
+        listing = None
+        if review_data['listing_id'] != None:
+            # Gets existing listing or creates a new one if it exists
+            listing_id = review_data['listing_id']
+            listing_name = review_data['listing_name']
+            listing_image = review_data['listing_image']
+            listing, _ = Listing.objects.get_or_create(
+                listing_id = listing_id,
+                user = current_user,
                 defaults={
-                    'rating': review_data['rating'],
-                    'comment': review_data['comment'],
-                    'reviewer': review_data['reviewer'],
-                    'listing': listing,
-                    'date': review_data['date'],
-                    'sentiment': None,
+                    'name': listing_name,
+                    'image': listing_image,
                 }
             )
+        return listing
+
+    def save_review_data(self, current_user, extracted_review_data):
+        listings_changed = []
+        for review_data in extracted_review_data:
+            review_exists = Review.objects.filter(
+                review_id=review_data['review_id'],
+                user=current_user
+            ).exists()
+            if not review_exists:
+                listing = self.find_or_create_review_listing(current_user, review_data)
+                if listing:
+                    listings_changed.append(listing)
+                Review.objects.create(
+                    review_id=review_data['review_id'],
+                    user=current_user,
+                    rating=review_data['rating'],
+                    comment=review_data['comment'],
+                    reviewer=review_data['reviewer'],
+                    listing=listing,
+                    date=review_data['date'],
+                    sentiment=None,
+                )
+        self.update_listing_summary_status(listings_changed)
+
+
+    def update_listing_summary_status(self, listings_changed):
         for listing in listings_changed:
             listing.summary_up_to_date = False
             listing.save()
 
-        # classify sentiments in batches
+    def classify_review_sentiment(self, current_user):
         reviews = Review.objects.filter(user=current_user, sentiment__isnull=True)
         comments = [review.comment for review in reviews]
         model_output = sentiment_classifier(comments)
@@ -176,4 +197,5 @@ class ProcessHarFile(APIView):
             review.sentiment = model_output[index][0]['label']
             review.save()
 
-        return JsonResponse({'count': len(extracted_review_data)})
+    
+    
