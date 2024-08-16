@@ -33,9 +33,12 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > - 🚧 Import LLM Model for summarization
 > - 🚧 Add Summarization functionality to backend
 > - 🚧 Display Summarization on Overview Component
-> - 🚧 Refactor ProcessHar view in views.py
-> - 🚧 Refactor ProcessHar components and maps (sentiment maps and ListingOverview)
+> - 🚧 Refactor maps (sentiment maps and ListingOverview)
 > - 🚧 Refactor CSS Styling Colors
+>
+> ### 8/16/24
+>
+> - ✅ Refactor ProcessHar view in views.py
 >
 > ### 8/14/24
 >
