@@ -45,6 +45,13 @@ class DeleteReview(generics.DestroyAPIView):
     def get_queryset(self):
         return Review.objects.filter(user=self.request.user)
     
+    def perform_destroy(self, instance):
+        listing = instance.listing
+        if listing:
+            listing.summary_up_to_date = False
+            listing.save()
+        super().perform_destroy(instance)
+    
 
 class DeleteAllReviews(generics.GenericAPIView):
     serializer_class = ReviewSerializer
@@ -125,8 +132,8 @@ class ProcessHarFile(APIView):
 
         # Save extracted data to database
         current_user = request.user
+        listings_changed = []
         for review_data in extracted_review_data:
-
             # Some Airbnb reviews do not have a listing attached to it
             if review_data['listing_id'] == None:
                 listing = None 
@@ -143,6 +150,7 @@ class ProcessHarFile(APIView):
                         'image': listing_image,
                     }
                 )
+                listings_changed.append(listing)
                 
             Review.objects.update_or_create(
                 review_id=review_data['review_id'],
@@ -156,6 +164,9 @@ class ProcessHarFile(APIView):
                     'sentiment': None,
                 }
             )
+        for listing in listings_changed:
+            listing.summary_up_to_date = False
+            listing.save()
 
         # classify sentiments in batches
         reviews = Review.objects.filter(user=current_user, sentiment__isnull=True)
