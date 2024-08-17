@@ -5,7 +5,6 @@ function ConfirmationMenu({ message, onConfirm, onCancel }) {
   return (
     <div className="confirmation-overlay">
       <div className="confirmation-dialog">
-        <p>⚠️ ⚠️ ⚠️</p>
         <p className="confirmation-message"> {message} </p>
         <div className="confirmation-buttons">
           <button onClick={onConfirm} className="confirm-button">

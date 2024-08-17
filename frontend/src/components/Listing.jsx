@@ -65,6 +65,7 @@ function Listing({ listing, onShowOverview, refreshReviews }) {
                   onChange={handleNameChange}
                   onBlur={handleBlur}
                   autoFocus
+                  maxLength={50}
                 />
               ) : (
                 <div>
