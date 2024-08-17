@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from huggingface_hub import login
 
-load_dotenv()   
+load_dotenv('../.env')   
 HUGGING_FACE_TOKEN = os.environ.get("HUGGING_FACE_TOKEN")
 login(token=HUGGING_FACE_TOKEN)
 
