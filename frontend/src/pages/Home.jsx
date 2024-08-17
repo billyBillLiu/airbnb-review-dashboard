@@ -74,7 +74,6 @@ function Home() {
       .then((res) => res.data)
       .then((data) => {
         setAllReviews(data);
-        console.log(data);
       })
       .catch((err) => alert(`Error While Getting Reviews: \n${err}`))
       .finally(() => setLoading(false));

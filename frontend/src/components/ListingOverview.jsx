@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import api from "../api";
 import x_icon from "../assets/x_icon.png";
 import "../styles/ListingOverview.css";
 
@@ -10,6 +11,7 @@ function ListingOverview({ listing, reviews, onClose }) {
     neutral: 0,
     negative: 0,
   });
+  const [summary, setSummary] = useState({});
 
   const sentimentColorMap = {
     love: "positive",
@@ -53,7 +55,19 @@ function ListingOverview({ listing, reviews, onClose }) {
 
     const sentimentPercent = calculateSentimentPercent(sentimentCount);
     setSentimentPercent(sentimentPercent);
+
+    setSummary(listing.summary);
+    console.log("SUMMARY", listing.summary);
   }, []);
+
+  const generateSummary = (id) => {
+    api
+      .patch(`/api/listings/${id}/generate-summary/`)
+      .then((res) => {
+        if (res.status !== 200) alert("Failed to Generate Summary");
+      })
+      .catch((err) => alert(`Error While Generating Summary: \n${err}`));
+  };
 
   const countSentiments = (reviews) => {
     return reviews.reduce((acc, review) => {
@@ -89,7 +103,6 @@ function ListingOverview({ listing, reviews, onClose }) {
       sentimentPercentages[sentiment] =
         (sentimentCount[sentiment] / maxCount) * 100;
     }
-    console.log(sentimentPercentages);
     return sentimentPercentages;
   };
 
@@ -130,12 +143,11 @@ function ListingOverview({ listing, reviews, onClose }) {
             <div className="bar-chart">
               {Object.keys(sentimentCount)
                 .sort((a, b) => sentimentCount[b] - sentimentCount[a])
-                .map((key, index) => (
-                  <div className="bar-row">
+                .map((key) => (
+                  <div className="bar-row" key={key}>
                     <div className="bar-count">{sentimentCount[key]}</div>
                     <div className="bar-stack">
                       <div
-                        key={index}
                         className={`bar ${sentimentColorMap[key]}`}
                         style={{ width: `${sentimentPercent[key]}%` }}
                       />
@@ -148,7 +160,12 @@ function ListingOverview({ listing, reviews, onClose }) {
           <div className="overview-summary">
             <div className="summary-section">
               <div className="summary-title good">Strengths:</div>
-              <div className="summary-text"> YPPPP</div>
+              <div className="summary-text">
+                <button onClick={() => generateSummary(listing.id)}>
+                  {" "}
+                  GENERATE{" "}
+                </button>
+              </div>
             </div>
             <div className="summary-section">
               <div className="summary-title bad">Weaknesses:</div>

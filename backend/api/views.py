@@ -14,8 +14,20 @@ import re
 
 from transformers import pipeline
 import warnings
+import os
+from dotenv import load_dotenv
+import google.generativeai as genai
+
 warnings.filterwarnings("ignore", category=FutureWarning)
 sentiment_classifier = pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", device=0, top_k=None)
+
+load_dotenv('../../.env')   
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+model = genai.GenerativeModel(
+  model_name="gemini-1.5-flash",
+  system_instruction="You are an analyst for Airbnb reviews.  You always point out 5 areas in which the Airbnb is doing well, 5 areas in which the Airbnb can be improved, and the reasoning for each point. You always respond with a JSON without any newlines. You always use the keys \"strengths\" for areas doing well, \"weaknesses\" for areas that can improve, and \"area\" and \"reason\" for the area and reasoning.",
+)
 
 class CreateReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
@@ -37,7 +49,6 @@ class UpdateListingName(generics.UpdateAPIView):
     def get_queryset(self):
         return Listing.objects.filter(user=self.request.user)
 
-
 class DeleteReview(generics.DestroyAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated]
@@ -52,7 +63,6 @@ class DeleteReview(generics.DestroyAPIView):
             listing.save()
         super().perform_destroy(instance)
     
-
 class DeleteAllReviews(generics.GenericAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated]
@@ -62,12 +72,10 @@ class DeleteAllReviews(generics.GenericAPIView):
         all_reviews.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
-
 
 class ProcessHarFile(APIView):
     permission_classes = [IsAuthenticated]
@@ -197,5 +205,18 @@ class ProcessHarFile(APIView):
             review.sentiment = model_output[index][0]['label']
             review.save()
 
-    
+class GenerateListingSummary(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, *args, **kwargs):
+        listing_key = self.kwargs.get('pk')
+        listing = Listing.objects.get(pk = listing_key, user=self.request.user)
+        reviews = Review.objects.filter(listing=listing)
+        review_input = ''.join(f"<review>{review.comment}</review>" for review in reviews)
+        response = model.generate_content(review_input)
+        json_data = json.loads(response.text)
+        listing.summary = json_data
+        listing.summary_up_to_date = True
+        listing.save()
+        return JsonResponse({'summary': json_data})
     

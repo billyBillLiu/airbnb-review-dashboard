@@ -8,14 +8,15 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 import time
+import json
 
-load_dotenv()   
+load_dotenv("../.env")   
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 model = genai.GenerativeModel(
   model_name="gemini-1.5-flash",
-  system_instruction="You are an analyst for Airbnb reviews.  You always point out 5 areas in which the Airbnb is doing well, 5 areas in which the Airbnb can be improved, and the reasoning for each point. You always respond in a JSON Format. You always use the keys \"strengths\" for areas doing well, \"weaknesses\" for areas that can improve, and \"area\" and \"reason\" for the area and reasoning.",
+  system_instruction="You are an analyst for Airbnb reviews.  You always point out 5 areas in which the Airbnb is doing well, 5 areas in which the Airbnb can be improved, and the reasoning for each point. You always respond with a JSON without any newlines. You always use the keys \"strengths\" for areas doing well, \"weaknesses\" for areas that can improve, and \"area\" and \"reason\" for the area and reasoning.",
 )
 
 start_time = time.time()
@@ -23,5 +24,5 @@ user_input ="<review> The host was very accommodating and hospitable. The place 
 response = model.generate_content(user_input)
 end_time = time.time()
 
-print(response.text)
+print(response)
 print(f"Execution time: {end_time - start_time} seconds")
