@@ -184,7 +184,7 @@ function Home() {
           onClick={() => setShowHeaderMenu(true)}
         />
         {showHeaderMenu && (
-          <div className={`header-menu ${showHeaderMenu ? "active" : ""}`}>
+          <div className="header-menu">
             <img
               src={up_icon}
               onClick={() => {
