@@ -109,7 +109,7 @@ function Listing({ listing, onShowOverview, refreshReviews }) {
                 </button>
               ) : (
                 <button
-                  className="listing-button"
+                  className="listing-button edit"
                   onClick={handleEditButtonClick}
                 >
                   <img className="button-icon" src={edit_icon} alt="Edit" />

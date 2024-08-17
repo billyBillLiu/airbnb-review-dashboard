@@ -71,17 +71,32 @@
   width: 50px;
   cursor: pointer;
   text-align: center;
-  background-color: #555555;
+
   border: 3px solid #202020;
   border-radius: 50%;
+}
+
+.listing-button.edit {
+  background-color: #555555;
+}
+
+.listing-button.edit:hover {
+  background-color: #353535;
 }
 
 .listing-button.save {
   background-color: rgb(0, 119, 0);
 }
 
+.listing-button.save:hover {
+  background-color: rgb(3, 80, 3);
+}
+
 .listing-button.info {
   background-color: rgb(51, 168, 189);
+}
+.listing-button.info:hover {
+  background-color: rgb(25, 101, 114);
 }
 
 .button-icon {

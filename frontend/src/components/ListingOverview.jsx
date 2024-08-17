@@ -1,9 +1,11 @@
 import { React, useState, useEffect } from "react";
 import api from "../api";
 import x_icon from "../assets/x_icon.png";
+import LoadingIndicator from "./reusable/LoadingIndicator";
+import generate_icon from "../assets/generate_icon.png";
 import "../styles/ListingOverview.css";
 
-function ListingOverview({ listing, reviews, onClose }) {
+function ListingOverview({ listing, reviews, refreshReviews, onClose }) {
   const [sentimentCount, setSentimentCount] = useState({});
   const [sentimentPercent, setSentimentPercent] = useState({});
   const [colorPercent, setColorPercent] = useState({
@@ -11,7 +13,7 @@ function ListingOverview({ listing, reviews, onClose }) {
     neutral: 0,
     negative: 0,
   });
-  const [summary, setSummary] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const sentimentColorMap = {
     love: "positive",
@@ -56,17 +58,21 @@ function ListingOverview({ listing, reviews, onClose }) {
     const sentimentPercent = calculateSentimentPercent(sentimentCount);
     setSentimentPercent(sentimentPercent);
 
-    setSummary(listing.summary);
-    console.log("SUMMARY", listing.summary);
+    if (Object.keys(listing.summary).length === 0) {
+      generateSummary(listing.id);
+    }
   }, []);
 
   const generateSummary = (id) => {
+    setLoading(true);
     api
       .patch(`/api/listings/${id}/generate-summary/`)
       .then((res) => {
         if (res.status !== 200) alert("Failed to Generate Summary");
+        refreshReviews();
       })
-      .catch((err) => alert(`Error While Generating Summary: \n${err}`));
+      .catch((err) => alert(`Error While Generating Summary: \n${err}`))
+      .finally(() => setLoading(false));
   };
 
   const countSentiments = (reviews) => {
@@ -161,28 +167,44 @@ function ListingOverview({ listing, reviews, onClose }) {
             <div className="summary-section">
               <div className="summary-title good">Strengths:</div>
               <div className="summary-text">
-                <button onClick={() => generateSummary(listing.id)}>
-                  {" "}
-                  GENERATE{" "}
-                </button>
+                {loading ? (
+                  <LoadingIndicator />
+                ) : Object.keys(listing.summary).length == 0 ? (
+                  <LoadingIndicator />
+                ) : (
+                  listing.summary.strengths.map((item, index) => (
+                    <div key={index}>
+                      <div className="summary-text-header">{item.area}:</div>
+                      <div className="summary-text-body">{item.reason}</div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
             <div className="summary-section">
               <div className="summary-title bad">Weaknesses:</div>
               <div className="summary-text">
-                {" "}
-                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
-                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY{" "}
-                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
-                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
-                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
-                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
-                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
-                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
-                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A
-                SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY
-                THIS IS A SUMMARY THIS IS A SUMMARY THIS IS A SUMMARY{" "}
+                {loading ? (
+                  <LoadingIndicator className="summary-loading" />
+                ) : Object.keys(listing.summary).length == 0 ? (
+                  <LoadingIndicator className="summary-loading" />
+                ) : (
+                  listing.summary.weaknesses.map((item, index) => (
+                    <div key={index}>
+                      <div className="summary-text-header">{item.area}:</div>
+                      <div className="summary-text-body">{item.reason}</div>
+                    </div>
+                  ))
+                )}
               </div>
+              {!listing.summary_up_to_date && (
+                <div
+                  className="update-summary-button"
+                  onClick={() => generateSummary(listing.id)}
+                >
+                  <img className="generate-icon-image" src={generate_icon} />
+                </div>
+              )}
             </div>
           </div>
         </div>

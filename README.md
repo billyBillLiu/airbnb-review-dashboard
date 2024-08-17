@@ -30,15 +30,17 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 >
 > ### Tasks
 >
-> - 🚧 Display Summarization in Overview Component
 > - 🚧 Refactor maps (sentiment maps and ListingOverview)
 > - 🚧 Refactor CSS Styling Colors
+> - 🚧 Refactor API Calls (make it so the listing is called separtely from the review)
+> - 🚧 Fix summary_up_to_date refreshing problem (right now the user needs to refresh page after deleting a review to get the option to regenerate summary)
 >
 > ### 8/16/24
 >
 > - ✅ Refactor ProcessHar view in views.py
 > - ✅ Import LLM Model for summarization
 > - ✅ Add Summarization functionality to backend
+> - ✅ Display Summarization in Overview Component
 >
 > ### 8/14/24
 >

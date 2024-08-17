@@ -33,6 +33,7 @@ function ListingColumn({ reviews, onDelete, refreshReviews }) {
         <ListingOverview
           listing={listing}
           reviews={reviews}
+          refreshReviews={refreshReviews}
           onClose={hideOverview}
         />
       )}
