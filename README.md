@@ -35,6 +35,10 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > - 🚧 Refactor API Calls (make it so the listing is called separtely from the review)
 > - 🚧 Fix summary_up_to_date refreshing problem (right now the user needs to refresh page after deleting a review to get the option to regenerate summary)
 >
+> ### 8/17/24
+>
+> - ✅ Add tutorial images on how to download the har file needed to use the webapp
+>
 > ### 8/16/24
 >
 > - ✅ Refactor ProcessHar view in views.py
