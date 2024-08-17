@@ -41,6 +41,7 @@ Created to easily collect, store, and view Airbnb reviews in a personal database
 > - ✅ Import LLM Model for summarization
 > - ✅ Add Summarization functionality to backend
 > - ✅ Display Summarization in Overview Component
+> - ✅ Added a regenerate button that shows up when the listing's summary is outdated (when a review is added or deleted)
 >
 > ### 8/14/24
 >
