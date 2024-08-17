@@ -4,6 +4,7 @@ import api from "../api";
 import ListingColumn from "../components/ListingColumn";
 import FileUploader from "../components/FileUploader";
 import ConfirmationMenu from "../components/reusable/ConfirmationMenu";
+import TutorialOverlay from "../components/reusable/TutorialOverlay";
 import LoadingIndicator from "../components/reusable/LoadingIndicator";
 import info_icon from "../assets/info_icon.png";
 import delete_all_icon from "../assets/delete_all_icon.png";
@@ -19,6 +20,7 @@ function Home() {
   const [sortCriteria, setSortCriteria] = useState("newest");
   const [showHeaderMenu, setShowHeaderMenu] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // State for showing confirmation
+  const [showTutorial, setShowTutorial] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -191,10 +193,19 @@ function Home() {
                 setShowHeaderMenu(false);
               }}
             />
-            <img src={info_icon} />
+            <img
+              src={info_icon}
+              onClick={() => {
+                setShowTutorial(true);
+                setShowHeaderMenu(false);
+              }}
+            />
             <img
               src={delete_all_icon}
-              onClick={() => setShowDeleteConfirmation(true)}
+              onClick={() => {
+                setShowDeleteConfirmation(true);
+                setShowHeaderMenu(false);
+              }}
             />
             <img src={logout_icon} onClick={handleLogout} />
           </div>
@@ -217,6 +228,10 @@ function Home() {
           onConfirm={deleteAllReviews}
           onCancel={() => setShowDeleteConfirmation(false)}
         />
+      )}
+
+      {showTutorial && (
+        <TutorialOverlay onClose={() => setShowTutorial(false)} />
       )}
     </div>
   );
